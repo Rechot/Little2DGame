@@ -1,12 +1,14 @@
 package dev.codenmore.java2Dgame.display;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Display {
 
     //InstanceFields
     private JFrame frame;
-    private Misiu misiu;
+    private Canvas canvas;  // canvas allows us to draw graphics to it, then we will add that canvas to Jframe window
+                            // we are able to see on the screen
     private String title;
     private int width, height; // pixels
 
@@ -23,6 +25,7 @@ public class Display {
     //Methods
 
     public void createDisplay(){
+        // setting JFrame window
         frame = new JFrame(title);
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // very important! This makes sure your program close properly
@@ -30,6 +33,16 @@ public class Display {
         frame.setLocationRelativeTo(null); // window will appear at the center
         frame.setVisible(true); // window by default is invisible
 
+        // setting canvas
+        canvas = new Canvas();
+        canvas.setPreferredSize(new Dimension(width, height));
+
+        canvas.setMaximumSize(new Dimension(width, height));
+        canvas.setMinimumSize(new Dimension(width, height));
+
+        // adding canvas to Jframe window
+        frame.add(canvas);
+        frame.pack(); // adjusting canvas to Jframe window
     }
 
 
