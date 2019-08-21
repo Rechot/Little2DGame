@@ -1,0 +1,13 @@
+# Generated files
+out/
+
+# Log files
+*.log
+
+#IntelliJ
+*.iml
+.idea/*
+
+#Version control
+vcs.xml
+
