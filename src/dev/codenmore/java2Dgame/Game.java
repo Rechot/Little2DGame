@@ -8,23 +8,26 @@ public class Game implements Runnable{
 
     // InstanceFields
     boolean isGameRunning = false;
-    //public int width, heigth;
-    //public String title;
+    public int width, heigth;
+    public String title;
+
     private Display display;
     private Thread thread;
 
     // Constructors
+    // Game sets and stores via InstanceFileds int height, width and String title in order
+    // to pass it to Display Constructor in init() method
     public Game(String title, int width, int heigth){
-       // this.width = width;
-       // this.heigth = heigth;
-        display = new Display(title, width, heigth);
+       this.width = width;
+       this.heigth = heigth;
+       this.title = title;
     }
 
     // Methods
 
     // Prepare method of game, initializing graphics
     private void init(){
-
+        display = new Display(title, width, heigth);
     }
     // Update method of game
     private void tick(){
