@@ -16,7 +16,7 @@ public class Game implements Runnable{
 
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
-    // to pass it to Display Constructor in init() method
+    // to pass it to Display constructor in init() method
     public Game(String title, int width, int heigth){
        this.width = width;
        this.heigth = heigth;
