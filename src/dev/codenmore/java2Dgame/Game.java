@@ -7,6 +7,7 @@ public class Game implements Runnable{
     // start everything, run it and close the app
 
     // InstanceFields
+    boolean isGameRunning = false;
     //public int width, heigth;
     //public String title;
     private Display display;
@@ -21,22 +22,47 @@ public class Game implements Runnable{
 
     // Methods
 
+    // Prepare method of game, initializing graphics
+    private void init(){
+
+    }
+    // Update method of game
+    private void tick(){
+
+    }
+
+    private void render(){
+
+    }
+
+
     // Method of Runnable Interface
     // run method is where majority of our actual game will run
     @Override
     public void run() {
-
+        init();
+        while (isGameRunning) {
+            tick();
+            render();
+        }
+        stop();
     }
 
     // Starting and stopping thread method.
     // You use synchronized whenever you work with threads directly.
     // Thread constructor takes class you want to run as a parameter.
     public synchronized void start(){
+        if(isGameRunning){return;} // Better save than sorry
+
+        isGameRunning = true;
         thread = new Thread(this);
         thread.start(); // invoking run() method
     }
 
     public synchronized void stop()  {
+        if(!isGameRunning){return;} // Better save than sorry
+
+        isGameRunning = false;
         try {
             thread.join();
         } catch (InterruptedException e) {
