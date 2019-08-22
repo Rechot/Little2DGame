@@ -49,8 +49,14 @@ public class Game implements Runnable{
         }
         graphics = bufferStrategy.getDrawGraphics();    // our paintbrush, allow drawing things to the canvas
                                                         // drawing rectangles, circles, lines, whole images
+        // Clear screen
+        graphics.clearRect(0,0,width,heigth);
         // Draw here.
-        graphics.fillRect(0,0,width,heigth);
+
+        graphics.setColor(Color.red);
+        graphics.fillRect(0,0,160,100);
+        graphics.setColor(Color.green);
+        graphics.fillRect(320,200,80,80);
 
         // End drawing.
         bufferStrategy.show();
