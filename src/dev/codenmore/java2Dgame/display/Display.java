@@ -24,6 +24,12 @@ public class Display {
 
     //Methods
 
+    // canvas getter
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
     public void createDisplay(){
         // setting JFrame window
         frame = new JFrame(title);
