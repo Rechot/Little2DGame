@@ -2,17 +2,24 @@ package dev.codenmore.java2Dgame;
 
 import dev.codenmore.java2Dgame.display.Display;
 
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
 public class Game implements Runnable{
     // the "main" class of our game, it will hold all the base code of our game
     // start everything, run it and close the app
 
     // InstanceFields
-    boolean isGameRunning = false;
+
     public int width, heigth;
     public String title;
+    private boolean isGameRunning = false;
 
     private Display display;
     private Thread thread;
+
+    private BufferStrategy bufferStrategy; // BufferStrategy tells graphic card how it should draw things ona a screen
+    private Graphics graphics;
 
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
@@ -35,7 +42,19 @@ public class Game implements Runnable{
     }
 
     private void render(){
+        bufferStrategy = display.getCanvas().getBufferStrategy();
+        if(bufferStrategy == null){
+            display.getCanvas().createBufferStrategy(3);
+            return; // Why?
+        }
+        graphics = bufferStrategy.getDrawGraphics();    // our paintbrush, allow drawing things to the canvas
+                                                        // drawing rectangles, circles, lines, whole images
+        // Draw here.
+        graphics.fillRect(0,0,width,heigth);
 
+        // End drawing.
+        bufferStrategy.show();
+        graphics.dispose();
     }
 
 
