@@ -1,5 +1,6 @@
 package dev.codenmore.java2Dgame;
 
+import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.graphics.ImageLoader;
 import dev.codenmore.java2Dgame.display.Display;
 import dev.codenmore.java2Dgame.graphics.SpriteSheet;
@@ -41,8 +42,7 @@ public class Game implements Runnable{
     // Prepare method of game, initializing graphics
     private void init(){
         display = new Display(title, width, heigth);
-        testImage = ImageLoader.LoadImage("/textures/testSpriteSheet.png");
-        sheet = new SpriteSheet(testImage);
+        Assets.initAssets();
     }
     // Update method of game
     private void tick(){
@@ -61,8 +61,12 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
-       graphics.drawImage(sheet.crop(14,10,22,26), 0,0,null);
-       graphics.drawImage(sheet.crop(65,11,22,25), 22,0,null);
+        graphics.drawImage(Assets.adventurer,0,0,null);
+        graphics.drawImage(Assets.groundTile,0,32,null);
+        graphics.drawImage(Assets.groundTile,32,32,null);
+        graphics.drawImage(Assets.groundTile,64,32,null);
+        graphics.drawImage(Assets.groundTile,96,32,null);
+        graphics.drawImage(Assets.groundTile,128,32,null);
 
         // End drawing.
         bufferStrategy.show();
