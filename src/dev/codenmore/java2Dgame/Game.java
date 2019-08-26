@@ -2,6 +2,7 @@ package dev.codenmore.java2Dgame;
 
 import dev.codenmore.java2Dgame.graphics.ImageLoader;
 import dev.codenmore.java2Dgame.display.Display;
+import dev.codenmore.java2Dgame.graphics.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -25,7 +26,7 @@ public class Game implements Runnable{
 
     //Temporal code
     private BufferedImage testImage;
-
+    private SpriteSheet sheet;
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
     // to pass it to Display constructor in init() method
@@ -40,7 +41,8 @@ public class Game implements Runnable{
     // Prepare method of game, initializing graphics
     private void init(){
         display = new Display(title, width, heigth);
-        testImage = ImageLoader.LoadImage("/textures/test.png");
+        testImage = ImageLoader.LoadImage("/textures/testSpriteSheet.png");
+        sheet = new SpriteSheet(testImage);
     }
     // Update method of game
     private void tick(){
@@ -59,7 +61,8 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
-       graphics.drawImage(testImage, 0,0,null);
+       graphics.drawImage(sheet.crop(14,10,22,26), 0,0,null);
+       graphics.drawImage(sheet.crop(65,11,22,25), 22,0,null);
 
         // End drawing.
         bufferStrategy.show();
