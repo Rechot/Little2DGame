@@ -15,7 +15,7 @@ public class Game implements Runnable{
 
     // InstanceFields
 
-    public int width, heigth;
+    public int width, heigth, x;
     public String title;
     private boolean isGameRunning = false;
 
@@ -46,7 +46,7 @@ public class Game implements Runnable{
     }
     // Update method of game
     private void tick(){
-
+        x += 1;
     }
 
     private void render(){
@@ -61,12 +61,12 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
-        graphics.drawImage(Assets.adventurer,0,0,null);
-        graphics.drawImage(Assets.groundTile,0,32,null);
+        graphics.drawImage(Assets.adventurer,x,10,null);
+       /* graphics.drawImage(Assets.groundTile,0,32,null);
         graphics.drawImage(Assets.groundTile,32,32,null);
         graphics.drawImage(Assets.groundTile,64,32,null);
         graphics.drawImage(Assets.groundTile,96,32,null);
-        graphics.drawImage(Assets.groundTile,128,32,null);
+        graphics.drawImage(Assets.groundTile,128,32,null); */
 
         // End drawing.
         bufferStrategy.show();
