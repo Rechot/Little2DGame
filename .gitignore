@@ -11,3 +11,5 @@ out/
 #Version control
 vcs.xml
 
+#Local Templates resources e.g. textures, sprite sheets
+resourcesTemplates/

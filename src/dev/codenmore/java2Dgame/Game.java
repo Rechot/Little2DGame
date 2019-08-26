@@ -1,9 +1,11 @@
 package dev.codenmore.java2Dgame;
 
+import dev.codenmore.java2Dgame.graphics.ImageLoader;
 import dev.codenmore.java2Dgame.display.Display;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game implements Runnable{
     // the "main" class of our game, it will hold all the base code of our game
@@ -21,6 +23,9 @@ public class Game implements Runnable{
     private BufferStrategy bufferStrategy; // BufferStrategy tells graphic card how it should draw things ona a screen
     private Graphics graphics;
 
+    //Temporal code
+    private BufferedImage testImage;
+
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
     // to pass it to Display constructor in init() method
@@ -35,6 +40,7 @@ public class Game implements Runnable{
     // Prepare method of game, initializing graphics
     private void init(){
         display = new Display(title, width, heigth);
+        testImage = ImageLoader.LoadImage("/textures/test.png");
     }
     // Update method of game
     private void tick(){
@@ -53,10 +59,7 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
-        graphics.setColor(Color.red);
-        graphics.fillRect(0,0,160,100);
-        graphics.setColor(Color.green);
-        graphics.fillRect(320,200,80,80);
+       graphics.drawImage(testImage, 0,0,null);
 
         // End drawing.
         bufferStrategy.show();
