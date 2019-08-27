@@ -4,6 +4,8 @@ import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.graphics.ImageLoader;
 import dev.codenmore.java2Dgame.display.Display;
 import dev.codenmore.java2Dgame.graphics.SpriteSheet;
+import dev.codenmore.java2Dgame.states.GameState;
+import dev.codenmore.java2Dgame.states.State;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -26,13 +28,16 @@ public class Game implements Runnable{
     private Graphics graphics;
 
     private int rate, ticks, framePerSecond;
-    private static final int oneSecondInNanoseconds = 1000000000; // 1 million nanoseconds;
+    private static final int oneSecondInNanoseconds = 1000000000; // 1 million nanoseconds equals 1 second;
     private long lastTime, now, timeSlice, timer;
     private double delta, fixedTimeSlicePerTick;
 
     //Temporal code
     private BufferedImage testImage;
     private SpriteSheet sheet;
+
+    //States of "game", like Setting, Main Menu, actual game;
+    private State gameState;
 
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
@@ -49,10 +54,13 @@ public class Game implements Runnable{
     private void init(){
         display = new Display(title, width, heigth);
         Assets.initAssets();
+
+        gameState = new GameState();
+        State.setCurrentState(gameState);
     }
     // Update method of game
     private void tick(){
-        x += 1;
+        if(State.getCurrentState() != null) {State.getCurrentState().tick();}
     }
 
     private void render(){
@@ -67,12 +75,7 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
-        graphics.drawImage(Assets.adventurer,x,10,null);
-       /* graphics.drawImage(Assets.groundTile,0,32,null);
-        graphics.drawImage(Assets.groundTile,32,32,null);
-        graphics.drawImage(Assets.groundTile,64,32,null);
-        graphics.drawImage(Assets.groundTile,96,32,null);
-        graphics.drawImage(Assets.groundTile,128,32,null); */
+        if(State.getCurrentState() != null) {State.getCurrentState().render();}
 
         // End drawing.
         bufferStrategy.show();
