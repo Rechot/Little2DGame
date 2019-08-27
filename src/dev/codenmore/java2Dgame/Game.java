@@ -28,13 +28,8 @@ public class Game implements Runnable{
     private Graphics graphics;
 
     private int rate, ticks, framePerSecond;
-<<<<<<< HEAD
-
     private static final int oneSecondInNanoseconds = 1000000000; // 1 million nanoseconds equals 1 second;
 
-=======
-    private static final int oneSecondInNanoseconds = 1000000000; // 1 million nanoseconds;
->>>>>>> ad48df3e4c2dc53dcffabec009164c2b0694b6c5
     private long lastTime, now, timeSlice, timer;
     private double delta, fixedTimeSlicePerTick;
 
@@ -42,13 +37,9 @@ public class Game implements Runnable{
     private BufferedImage testImage;
     private SpriteSheet sheet;
 
-<<<<<<< HEAD
-
     //States of "game", like Setting, Main Menu, actual game;
     private State gameState;
 
-=======
->>>>>>> ad48df3e4c2dc53dcffabec009164c2b0694b6c5
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
     // to pass it to Display constructor in init() method
@@ -112,11 +103,8 @@ public class Game implements Runnable{
             now = System.nanoTime();
             timeSlice = now - lastTime;
             delta += timeSlice / fixedTimeSlicePerTick; // summing little differential fraction and checking whether delta >= 1 later on;
-<<<<<<< HEAD
             timer += timeSlice; // summing little time periods and checking whether timer >= second later on, optional, for game statistics only;
-=======
-            timer += timeSlice; // summing little time periods and checking whether timer >= second later on;
->>>>>>> ad48df3e4c2dc53dcffabec009164c2b0694b6c5
+
             lastTime = now;
 
             if(delta >= 1){
