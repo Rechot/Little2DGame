@@ -25,9 +25,15 @@ public class Game implements Runnable{
     private BufferStrategy bufferStrategy; // BufferStrategy tells graphic card how it should draw things ona a screen
     private Graphics graphics;
 
+    private int rate, ticks, framePerSecond;
+    private static final int oneSecondInNanoseconds = 1000000000; // 1 million nanoseconds;
+    private long lastTime, now, timeSlice, timer;
+    private double delta, fixedTimeSlicePerTick;
+
     //Temporal code
     private BufferedImage testImage;
     private SpriteSheet sheet;
+
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
     // to pass it to Display constructor in init() method
@@ -79,9 +85,36 @@ public class Game implements Runnable{
     @Override
     public void run() {
         init();
+        //Prepare variables for in-game loop mechanism
+        //Basically setting variables here for while loop to work properly
+        timer = 0;
+        ticks = 0;
+        lastTime = System.nanoTime();
+        rate = 60;
+        framePerSecond = rate;
+        fixedTimeSlicePerTick = oneSecondInNanoseconds / rate;
+
         while (isGameRunning) {
-            tick();
-            render();
+
+            now = System.nanoTime();
+            timeSlice = now - lastTime;
+            delta += timeSlice / fixedTimeSlicePerTick; // summing little differential fraction and checking whether delta >= 1 later on;
+            timer += timeSlice; // summing little time periods and checking whether timer >= second later on;
+            lastTime = now;
+
+            if(delta >= 1){
+                tick();
+                render();
+                ticks++;
+                delta = 0; // or delta--;
+            }
+
+            if(timer >= oneSecondInNanoseconds){
+                System.out.println("Ticks and frames: " + ticks);
+                ticks = 0;
+                timer = 0;
+            }
+
         }
         stop();
     }
