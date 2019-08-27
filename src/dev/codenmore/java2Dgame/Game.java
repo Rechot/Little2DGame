@@ -28,13 +28,16 @@ public class Game implements Runnable{
     private Graphics graphics;
 
     private int rate, ticks, framePerSecond;
+
     private static final int oneSecondInNanoseconds = 1000000000; // 1 million nanoseconds equals 1 second;
+
     private long lastTime, now, timeSlice, timer;
     private double delta, fixedTimeSlicePerTick;
 
     //Temporal code
     private BufferedImage testImage;
     private SpriteSheet sheet;
+
 
     //States of "game", like Setting, Main Menu, actual game;
     private State gameState;
@@ -75,7 +78,7 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
-        if(State.getCurrentState() != null) {State.getCurrentState().render();}
+        if(State.getCurrentState() != null) {State.getCurrentState().render(graphics);}
 
         // End drawing.
         bufferStrategy.show();
