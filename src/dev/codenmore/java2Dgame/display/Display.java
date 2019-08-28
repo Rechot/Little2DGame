@@ -29,7 +29,9 @@ public class Display {
     public Canvas getCanvas() {
         return canvas;
     }
-    public JFrame getJFrame() { return frame; }
+    public JFrame getJFrame() {
+        return frame;
+    }
 
     public void createDisplay(){
         // setting JFrame window

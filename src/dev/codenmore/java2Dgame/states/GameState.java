@@ -3,6 +3,7 @@ package dev.codenmore.java2Dgame.states;
 import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.entities.creature.Player;
 import dev.codenmore.java2Dgame.graphics.Assets;
+import dev.codenmore.java2Dgame.tile.Tile;
 
 import java.awt.*;
 
@@ -27,5 +28,6 @@ public class GameState extends State{
     @Override
     public void render(Graphics graphics) {
         player.render(graphics);
+        Tile.tiles[0].render(graphics,0,64);
     }
 }
