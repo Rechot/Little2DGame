@@ -23,14 +23,22 @@ public class Player extends Creature{
 
     @Override // Updating any variables for our object.
     public void tick() {
-        if(game.getKeyManager().up) {y -= 3;}
-        if(game.getKeyManager().down) {y += 3;}
-        if(game.getKeyManager().right) {x += 3;}
-        if(game.getKeyManager().left) {x -= 3;}
+        getInput();
+        move();
     }
 
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(Assets.adventurer, (int)x, (int)y, width, height, null);
+    }
+
+    private void getInput(){
+        xMove = 0;
+        yMove = 0;
+
+        if(game.getKeyManager().up){yMove = -speed;}
+        if(game.getKeyManager().down){yMove = speed;}
+        if(game.getKeyManager().left){xMove = -speed;}
+        if(game.getKeyManager().right){xMove = speed;}
     }
 }

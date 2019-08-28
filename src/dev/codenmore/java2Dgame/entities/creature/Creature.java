@@ -13,6 +13,7 @@ public abstract class Creature extends Entity {
 
     protected int health;
     protected float speed;
+    protected float xMove, yMove;
 
     //Getters
 
@@ -22,6 +23,14 @@ public abstract class Creature extends Entity {
 
     public float getSpeed() {
         return speed;
+    }
+
+    public float getxMove() {
+        return xMove;
+    }
+
+    public void setxMove(float xMove) {
+        this.xMove = xMove;
     }
 
     //Setters
@@ -34,18 +43,38 @@ public abstract class Creature extends Entity {
         this.speed = speed;
     }
 
+    public void setyMove(float yMove) {
+        this.yMove = yMove;
+    }
+
+    public float getyMove() {
+        return yMove;
+
+    }
+
     //Constructors
 
     public Creature(float x, float y, int width, int height, int health, float speed) {
         super(x, y, width, height);
         this.health = health;
         this.speed = speed;
+        xMove = 0;
+        yMove = 0;
     }
 
     public Creature(float x, float y, int width, int height) {
         super(x, y, width, height);
         this.health = DEFAULT_HEALTH;
         this.speed = DEFAULT_SPEED;
+        xMove = 0;
+        yMove = 0;
+    }
+
+    //Methods
+
+    public void move(){
+        x += xMove;
+        y += yMove;
     }
 
 }
