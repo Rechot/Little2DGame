@@ -14,7 +14,7 @@ public class GameState extends State{
     //Constructors
     public GameState(Game game){
         super(game);
-        player = new Player(100,100, 100, game);
+        player = new Player(100,100,100, game);
     }
 
     //Methods
