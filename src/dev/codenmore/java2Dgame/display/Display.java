@@ -24,11 +24,12 @@ public class Display {
 
     //Methods
 
-    // canvas getter
+    // Getters
 
     public Canvas getCanvas() {
         return canvas;
     }
+    public JFrame getJFrame() { return frame; }
 
     public void createDisplay(){
         // setting JFrame window
@@ -45,6 +46,9 @@ public class Display {
 
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
+
+        //Some computers need that for Key input to work!
+        //canvas.setFocusable(false);
 
         // adding canvas to Jframe window
         frame.add(canvas);

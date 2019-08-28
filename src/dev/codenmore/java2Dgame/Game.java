@@ -4,6 +4,7 @@ import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.graphics.ImageLoader;
 import dev.codenmore.java2Dgame.display.Display;
 import dev.codenmore.java2Dgame.graphics.SpriteSheet;
+import dev.codenmore.java2Dgame.input.KeyManager;
 import dev.codenmore.java2Dgame.states.GameState;
 import dev.codenmore.java2Dgame.states.State;
 
@@ -39,6 +40,11 @@ public class Game implements Runnable{
 
     //States of "game", like Setting, Main Menu, actual game;
     private State gameState;
+    private State menuState;
+    private State settingsState;
+
+    //Input
+    private KeyManager keyManager;
 
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
@@ -47,22 +53,40 @@ public class Game implements Runnable{
        this.width = width;
        this.heigth = heigth;
        this.title = title;
+       keyManager = new KeyManager();
     }
 
     // Methods
 
+    //Getters
+
+    public KeyManager getKeyManager(){
+        return keyManager;
+    }
+
     // Prepare method of game, initializing graphics
     private void init(){
         display = new Display(title, width, heigth);
+        display.getJFrame().addKeyListener(keyManager);
         Assets.initAssets();
 
-        gameState = new GameState();
+        gameState = new GameState(this);
+        menuState = new GameState(this);
+        settingsState = new GameState(this);
+
         State.setCurrentState(gameState);
     }
+
     // Update method of game
-    private void tick(){
-        if(State.getCurrentState() != null) {State.getCurrentState().tick();}
+
+    private void tick() {
+
+        keyManager.tick();
+
+        if (State.getCurrentState() != null) { State.getCurrentState().tick();}
     }
+
+    // Main rendering method
 
     private void render(){
         bufferStrategy = display.getCanvas().getBufferStrategy();
@@ -86,6 +110,7 @@ public class Game implements Runnable{
 
     // Method of Runnable Interface
     // run method is where majority of our actual game will run
+
     @Override
     public void run() {
         init();

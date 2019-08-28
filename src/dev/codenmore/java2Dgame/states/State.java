@@ -1,8 +1,19 @@
 package dev.codenmore.java2Dgame.states;
 
+import dev.codenmore.java2Dgame.Game;
+
 import java.awt.*;
 
 public abstract class State {
+
+    //InstanceFields
+    protected Game game;
+
+    //Constructors
+
+    public State(Game game){
+        this.game = game;
+    }
 
     //In-game state manager
     private static State currentState = null;

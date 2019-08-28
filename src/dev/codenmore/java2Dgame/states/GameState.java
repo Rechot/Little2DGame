@@ -1,5 +1,6 @@
 package dev.codenmore.java2Dgame.states;
 
+import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.entities.creature.Player;
 import dev.codenmore.java2Dgame.graphics.Assets;
 
@@ -11,8 +12,9 @@ public class GameState extends State{
     private Player player;
 
     //Constructors
-    public GameState(){
-        player = new Player(100,100, 100);
+    public GameState(Game game){
+        super(game);
+        player = new Player(100,100, 100, game);
     }
 
     //Methods
