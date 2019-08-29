@@ -1,5 +1,6 @@
 package dev.codenmore.java2Dgame.levels;
 
+import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.tile.Tile;
 import dev.codenmore.java2Dgame.utilities.Utilities;
 
@@ -11,6 +12,7 @@ public class Level {
     private int playerPositionX, getPlayerPositionY; //in tiles e.g. position 0,0 means player get spawned on first tile at the top left of the level map;
     private int x,y; // for loop helpers;
     private int levelHeight, levelWidth; //in tiles e.g. 5 tiles(height) per 10 tiles(width) of a level map;
+    private Game game;
 
     private int[][] tiles_ID;
     private String[] tokens;
@@ -18,7 +20,8 @@ public class Level {
 
     //Constructors
 
-    public Level(String path){
+    public Level(String path, Game game){
+        this.game = game;
         loadLevelFileAndParseItToStringArray(path);
         loadLevelSize(this.tokens);
         loadLevelPlayerPosition(this.tokens);

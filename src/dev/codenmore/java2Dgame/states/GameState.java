@@ -17,9 +17,8 @@ public class GameState extends State{
     //Constructors
     public GameState(Game game){
         super(game);
-        level01 = new Level("resources/leveldata/level01.txt");
+        level01 = new Level("resources/leveldata/level01.txt", game);
         player = new Player(100,100,100, game);
-
     }
 
     //Methods

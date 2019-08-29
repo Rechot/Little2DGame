@@ -1,5 +1,6 @@
 package dev.codenmore.java2Dgame.entities.creature;
 
+import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.entities.Entity;
 
 import java.awt.*;
@@ -54,16 +55,16 @@ public abstract class Creature extends Entity {
 
     //Constructors
 
-    public Creature(float x, float y, int width, int height, int health, float speed) {
-        super(x, y, width, height);
+    public Creature(float x, float y, int width, int height, int health, float speed, Game game) {
+        super(x, y, width, height, game);
         this.health = health;
         this.speed = speed;
         xMove = 0;
         yMove = 0;
     }
 
-    public Creature(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    public Creature(float x, float y, int width, int height, Game game) {
+        super(x, y, width, height, game);
         this.health = DEFAULT_HEALTH;
         this.speed = DEFAULT_SPEED;
         xMove = 0;
