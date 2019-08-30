@@ -120,7 +120,7 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
-        graphics.drawImage(Assets.adventurer,64+ x,64,null);
+        //graphics.drawImage(Assets.adventurer,64+ x,64,null); //for tests
         if(State.getCurrentState() != null) {State.getCurrentState().render(graphics);}
 
         // End drawing.

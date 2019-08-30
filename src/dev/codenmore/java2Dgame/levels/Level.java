@@ -41,8 +41,19 @@ public class Level {
     }
 
     public void render(Graphics graphics){
-        for(y=0; y < levelHeight; y++){
-            for(x=0; x < levelWidth; x++){
+
+        // Method adjusted so the render() method will only render part of map user actually see
+        int xStart = (int) Math.max(0, game.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
+        //The first tile user see on the screen, on left side.
+        int xEnd = (int) Math.min(levelWidth, (game.getGameCamera().getxOffset()+ game.getWidth()) / Tile.TILE_WIDTH + 1);
+        //The last tile user see on the screen, on right side.
+        int yStart = (int) Math.max(0, game.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
+        //The first tile user see on the screen, on top side.
+        int yEnd = (int) Math.min(levelHeight, (game.getGameCamera().getyOffset()+ game.getHeigth()) / Tile.TILE_WIDTH + 1);
+        //The last tile user see on the screen, on bottom side.
+
+        for(y = yStart; y < yEnd; y++){
+            for(x = xStart; x < xEnd; x++){
                 getTile(x,y).render(graphics,(int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()),
                         (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
             }
