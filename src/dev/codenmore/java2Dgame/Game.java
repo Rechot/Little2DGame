@@ -1,6 +1,7 @@
 package dev.codenmore.java2Dgame;
 
 import dev.codenmore.java2Dgame.graphics.Assets;
+import dev.codenmore.java2Dgame.graphics.GameCamera;
 import dev.codenmore.java2Dgame.graphics.ImageLoader;
 import dev.codenmore.java2Dgame.display.Display;
 import dev.codenmore.java2Dgame.graphics.SpriteSheet;
@@ -18,8 +19,8 @@ public class Game implements Runnable{
 
     // InstanceFields
 
-    public int width, heigth, x;
     public String title;
+    private int width, heigth, x;
     private boolean isGameRunning = false;
 
     private Display display;
@@ -46,6 +47,9 @@ public class Game implements Runnable{
     //Input
     private KeyManager keyManager;
 
+    //Camera
+    private GameCamera gameCamera;
+
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
     // to pass it to Display constructor in init() method
@@ -56,23 +60,39 @@ public class Game implements Runnable{
        keyManager = new KeyManager();
     }
 
-    // Methods
-
     //Getters
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeigth() {
+        return heigth;
+    }
 
     public KeyManager getKeyManager(){
         return keyManager;
     }
 
+    public GameCamera getGameCamera() {
+        return gameCamera;
+    }
+
+    // Methods
+
     // Prepare method of game, initializing graphics
     private void init(){
         display = new Display(title, width, heigth);
         display.getJFrame().addKeyListener(keyManager);
+
         Assets.initAssets();
 
+        gameCamera = new GameCamera(0,0, this);
+
+
         gameState = new GameState(this);
-        menuState = new GameState(this);
-        settingsState = new GameState(this);
+        menuState = new GameState(this);        //ToBeDone.
+        settingsState = new GameState(this);    //ToBeDone.
 
         State.setCurrentState(gameState);
     }
@@ -80,7 +100,7 @@ public class Game implements Runnable{
     // Update method of game
 
     private void tick() {
-
+        x += 1;
         keyManager.tick();
 
         if (State.getCurrentState() != null) { State.getCurrentState().tick();}
@@ -100,6 +120,7 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width,heigth);
         // Draw here.
 
+        graphics.drawImage(Assets.adventurer,64+ x,64,null);
         if(State.getCurrentState() != null) {State.getCurrentState().render(graphics);}
 
         // End drawing.
@@ -114,8 +135,8 @@ public class Game implements Runnable{
     @Override
     public void run() {
         init();
-        //Prepare variables for in-game loop mechanism
-        //Basically setting variables here for while loop to work properly
+        //Prepare variables for in-game loop mechanism.
+        //Basically setting variables here for while loop to work properly.
         timer = 0;
         ticks = 0;
         lastTime = System.nanoTime();
@@ -124,6 +145,21 @@ public class Game implements Runnable{
         fixedTimeSlicePerTick = oneSecondInNanoseconds / rate;
 
         while (isGameRunning) {
+            /*
+            now = System.nanoTime();
+            timeSlice = now - lastTime;
+            tick();
+            render();
+            ticks++;
+            timer += timeSlice;
+            lastTime = now;
+
+            if(timer >= oneSecondInNanoseconds) {
+                System.out.println("Ticks and frames: " + ticks);
+                ticks = 0;
+                timer = 0;
+            }
+            */
 
             now = System.nanoTime();
             timeSlice = now - lastTime;

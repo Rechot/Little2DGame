@@ -19,8 +19,10 @@ public class Utilities {
         StringBuilder builder = new StringBuilder();
         try {
             Stream<String> stream = Files.lines(Paths.get(path));
+            // stream.forEach(System.out::println);
+            // stream.forEach((p) -> System.out.println(p));
             output = stream.toString(); System.out.println(output); // this will give you "java.util.stream.ReferencePipeline$Head@2ce96982"
-            output = stream.map(n -> n.toString()).collect(Collectors.joining("\n"));
+            output = stream.map(String::toString).collect(Collectors.joining("\n"));
         } catch (IOException e) {
             e.printStackTrace();
         }

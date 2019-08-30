@@ -19,6 +19,7 @@ public class GameState extends State{
         super(game);
         level01 = new Level("resources/leveldata/level01.txt", game);
         player = new Player(100,100,100, game);
+        //game.getGameCamera().move(0,0); //Test purposes
     }
 
     //Methods
@@ -27,6 +28,7 @@ public class GameState extends State{
     public void tick() {
         level01.tick();
         player.tick();
+        //game.getGameCamera().move(1,1); //Test purposes
     }
 
     @Override

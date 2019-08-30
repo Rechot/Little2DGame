@@ -22,11 +22,13 @@ public class Player extends Creature{
     public void tick() {
         getInput();
         move();
+        game.getGameCamera().centerOnEntity(this);
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.adventurer, (int)x, (int)y, width, height, null);
+        graphics.drawImage(Assets.adventurer, (int)(x - game.getGameCamera().getxOffset()),
+                (int) (y - game.getGameCamera().getyOffset()), width, height, null);
     }
 
     private void getInput(){

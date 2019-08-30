@@ -43,7 +43,8 @@ public class Level {
     public void render(Graphics graphics){
         for(y=0; y < levelHeight; y++){
             for(x=0; x < levelWidth; x++){
-                getTile(x,y).render(graphics,x * Tile.TILE_WIDTH,y * Tile.TILE_HEIGHT);
+                getTile(x,y).render(graphics,(int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()),
+                        (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
             }
         }
     }
