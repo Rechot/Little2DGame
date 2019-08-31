@@ -3,15 +3,16 @@ package dev.codenmore.java2Dgame.entities.creature;
 import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.entities.Entity;
+import dev.codenmore.java2Dgame.tile.Tile;
 
 import java.awt.*;
 
 public abstract class Creature extends Entity {
 
     public static final int DEFAULT_HEALTH = 10;
-    public static final float DEFAULT_SPEED = 3.0f;
-    public static final int DEFAULT_CREATURE_WIDTH = 64,
-                            DEFAULT_CREATURE_HEIGHT = 64; //My tile game will have squares of 64 x 64 pixels.
+    public static final float DEFAULT_SPEED = 6.0f;
+    public static final int DEFAULT_CREATURE_WIDTH = 128,
+                            DEFAULT_CREATURE_HEIGHT = 128; //My tile game will have squares of 128 x 128 pixels.
 
     protected int health;
     protected float speed;
@@ -51,7 +52,6 @@ public abstract class Creature extends Entity {
 
     public float getyMove() {
         return yMove;
-
     }
 
     //Constructors
@@ -75,8 +75,53 @@ public abstract class Creature extends Entity {
     //Methods
 
     public void move(){
-        x += xMove;
-        y += yMove;
+        moveX();
+        moveY();
     }
 
+    public void moveX(){
+        int temporalX;
+
+        //Moving right
+        if(xMove > 0) {
+            temporalX = (int) (x + xMove + collisionBounds.x + collisionBounds.width)/ Tile.TILE_WIDTH;
+            if(!collisionWithTile(temporalX, (int) (y + collisionBounds.y) / Tile.TILE_HEIGHT) &&
+                    !collisionWithTile(temporalX, (int) (y + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT)){
+                x += xMove;
+            }
+        }
+        //Moving left
+        if(xMove < 0) {
+            temporalX = (int) (x + xMove + collisionBounds.x )/ Tile.TILE_WIDTH;
+            if(!collisionWithTile(temporalX, (int) (y + collisionBounds.y) / Tile.TILE_HEIGHT) &&
+                    !collisionWithTile(temporalX, (int) (y + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT)){
+                x += xMove;
+            }
+        }
+    }
+
+    public void moveY(){
+        int temporalY;
+
+        //Moving down
+        if(yMove > 0) {
+            temporalY = (int) (y + yMove + collisionBounds.y + collisionBounds.height)/ Tile.TILE_WIDTH;
+            if(!collisionWithTile((int) (x + collisionBounds.x) / Tile.TILE_HEIGHT, temporalY ) &&
+                    !collisionWithTile((int) (x + collisionBounds.x + collisionBounds.width) / Tile.TILE_HEIGHT, temporalY)){
+                y += yMove;
+            }
+        }
+        //Moving up
+        if(yMove < 0) {
+            temporalY = (int) (y + yMove + collisionBounds.y )/ Tile.TILE_WIDTH;
+            if(!collisionWithTile((int) (x + collisionBounds.x) / Tile.TILE_HEIGHT, temporalY ) &&
+                    !collisionWithTile((int) (x + collisionBounds.x + collisionBounds.width) / Tile.TILE_HEIGHT, temporalY)){
+                y += yMove;
+            }
+        }
+    }
+
+    protected boolean collisionWithTile(int x, int y){
+        return handler.getLevel().getTile(x,y).isSolid();
+    }
 }

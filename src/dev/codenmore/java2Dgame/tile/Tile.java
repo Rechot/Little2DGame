@@ -5,16 +5,20 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
 
+    //InstanceFields
+
     public static Tile[] tiles = new Tile[256];
     public static Tile groundTile = new GroundTile(0);
     public static Tile darkGroundTile = new DarkGroundTile(1);
     public static Tile stoneTile = new StoneTile(2);
     public static Tile darkStoneTile = new DarkStoneTile(3);
 
-    public static final int TILE_WIDTH = 64, TILE_HEIGHT = 64;
+    public static final int TILE_WIDTH = 128, TILE_HEIGHT = 128;
 
     protected final int id;
     protected BufferedImage texture;
+
+    //Geters
 
     public int getId() {
         return id;

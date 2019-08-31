@@ -7,9 +7,12 @@ import java.awt.*;
 
 public abstract class Entity {
 
-    protected Handler handler;
+    //InstanceFields
+
     protected float x,y; //Why not int, because calculations in our game will not result in fixed numbers.
     protected int width, height;
+    protected Rectangle collisionBounds;
+    protected Handler handler;
 
     //Getters
 
@@ -53,6 +56,7 @@ public abstract class Entity {
       this.width = width;
       this.height = height;
       this.handler = handler;
+      collisionBounds = new Rectangle(0,0,width,height);
     }
 
     public abstract void tick();

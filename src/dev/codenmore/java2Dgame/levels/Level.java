@@ -9,7 +9,7 @@ import java.awt.*;
 public class Level {
 
     //InstanceFields
-    private int playerPositionX, getPlayerPositionY; //in tiles e.g. position 0,0 means player get spawned on first tile at the top left of the level map;
+    private int playerPositionX, playerPositionY; //in tiles e.g. position 0,0 means player get spawned on first tile at the top left of the level map;
     private int x,y; // for loop helpers;
     private int levelHeight, levelWidth; //in tiles e.g. 5 tiles(height) per 10 tiles(width) of a level map;
     private Handler handler;
@@ -28,9 +28,23 @@ public class Level {
         loadLevelContentsByID(this.tokens);
     }
 
+    //Getters
+
+    public int getPlayerPositionX() {
+        return playerPositionX;
+    }
+
+    public int getPlayerPositionY() {
+        return playerPositionY;
+    }
+
     //Methods
 
     public Tile getTile(int x, int y){
+        //Safety measure to prevent glitch, when player would find a way to pass map boundaries.
+        //That way games thinks he is still standing ona grassTile though he is not on the map anymore.
+        if (x<0 || x>levelWidth || y<0 || y>levelHeight){ return Tile.groundTile;}
+
         Tile t = Tile.tiles[tiles_ID[x][y]];
         if(t == null){ return Tile.groundTile;}
         return t;
@@ -79,7 +93,7 @@ public class Level {
 
     private void loadLevelPlayerPosition(String[] tokens){
         this.playerPositionX = Utilities.parseInt(tokens[2]);
-        this.getPlayerPositionY = Utilities.parseInt(tokens[3]);
+        this.playerPositionY = Utilities.parseInt(tokens[3]);
     }
 
     private void loadLevelContentsByID(String [] tokens){
