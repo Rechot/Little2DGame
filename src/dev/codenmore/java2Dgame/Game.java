@@ -50,6 +50,9 @@ public class Game implements Runnable{
     //Camera
     private GameCamera gameCamera;
 
+    //Handler
+    private Handler handler;
+
     // Constructors
     // Game sets and stores via InstanceFileds int height, width and String title in order
     // to pass it to Display constructor in init() method
@@ -66,7 +69,7 @@ public class Game implements Runnable{
         return width;
     }
 
-    public int getHeigth() {
+    public int getHeight() {
         return heigth;
     }
 
@@ -88,11 +91,11 @@ public class Game implements Runnable{
         Assets.initAssets();
 
         gameCamera = new GameCamera(0,0, this);
+        handler = new Handler(this);
 
-
-        gameState = new GameState(this);
-        menuState = new GameState(this);        //ToBeDone.
-        settingsState = new GameState(this);    //ToBeDone.
+        gameState = new GameState(handler);
+        menuState = new GameState(handler);        //ToBeDone.
+        settingsState = new GameState(handler);    //ToBeDone.
 
         State.setCurrentState(gameState);
     }

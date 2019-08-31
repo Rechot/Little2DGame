@@ -1,6 +1,6 @@
 package dev.codenmore.java2Dgame.levels;
 
-import dev.codenmore.java2Dgame.Game;
+import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.tile.Tile;
 import dev.codenmore.java2Dgame.utilities.Utilities;
 
@@ -12,7 +12,7 @@ public class Level {
     private int playerPositionX, getPlayerPositionY; //in tiles e.g. position 0,0 means player get spawned on first tile at the top left of the level map;
     private int x,y; // for loop helpers;
     private int levelHeight, levelWidth; //in tiles e.g. 5 tiles(height) per 10 tiles(width) of a level map;
-    private Game game;
+    private Handler handler;
 
     private int[][] tiles_ID;
     private String[] tokens;
@@ -20,8 +20,8 @@ public class Level {
 
     //Constructors
 
-    public Level(String path, Game game){
-        this.game = game;
+    public Level(String path, Handler handler){
+        this.handler = handler;
         loadLevelFileAndParseItToStringArray(path);
         loadLevelSize(this.tokens);
         loadLevelPlayerPosition(this.tokens);
@@ -43,19 +43,19 @@ public class Level {
     public void render(Graphics graphics){
 
         // Method adjusted so the render() method will only render part of map user actually see
-        int xStart = (int) Math.max(0, game.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
+        int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
         //The first tile user see on the screen, on left side.
-        int xEnd = (int) Math.min(levelWidth, (game.getGameCamera().getxOffset()+ game.getWidth()) / Tile.TILE_WIDTH + 1);
+        int xEnd = (int) Math.min(levelWidth, (handler.getGameCamera().getxOffset()+ handler.getGameWidth()) / Tile.TILE_WIDTH + 1);
         //The last tile user see on the screen, on right side.
-        int yStart = (int) Math.max(0, game.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
+        int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
         //The first tile user see on the screen, on top side.
-        int yEnd = (int) Math.min(levelHeight, (game.getGameCamera().getyOffset()+ game.getHeigth()) / Tile.TILE_WIDTH + 1);
+        int yEnd = (int) Math.min(levelHeight, (handler.getGameCamera().getyOffset()+ handler.getGameHeight()) / Tile.TILE_WIDTH + 1);
         //The last tile user see on the screen, on bottom side.
 
         for(y = yStart; y < yEnd; y++){
             for(x = xStart; x < xEnd; x++){
-                getTile(x,y).render(graphics,(int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()),
-                        (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
+                getTile(x,y).render(graphics,(int) (x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()),
+                        (int) (y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
     }

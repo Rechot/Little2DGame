@@ -1,6 +1,7 @@
 package dev.codenmore.java2Dgame.states;
 
 import dev.codenmore.java2Dgame.Game;
+import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.entities.creature.Player;
 import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.levels.Level;
@@ -15,10 +16,11 @@ public class GameState extends State{
     private Level level01;
 
     //Constructors
-    public GameState(Game game){
-        super(game);
-        level01 = new Level("resources/leveldata/level01.txt", game);
-        player = new Player(100,100,100, game);
+    public GameState(Handler handler){
+        super(handler);
+        level01 = new Level("resources/leveldata/level01.txt", handler);
+        handler.setLevel(level01);
+        player = new Player(100,100,100, handler);
         //game.getGameCamera().move(0,0); //Test purposes
     }
 

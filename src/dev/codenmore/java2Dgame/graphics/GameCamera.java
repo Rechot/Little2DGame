@@ -47,6 +47,6 @@ public class GameCamera {
 
     public void centerOnEntity(Entity entity){
         xOffset = entity.getX() - game.getWidth() / 2 + entity.getWidth() / 2 ;
-        yOffset = entity.getY() - game.getHeigth() / 2 + entity.getHeight() / 2;
+        yOffset = entity.getY() - game.getHeight() / 2 + entity.getHeight() / 2;
     }
 }

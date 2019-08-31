@@ -19,7 +19,7 @@ public class Assets {
         groundTile = tileSheet.crop(0,0,width,height);
         darkGroundTile = tileSheet.crop(0,8*height,width,height);
         stoneTile = tileSheet.crop(8*width,0,width,height);
-        darkStoneTile = tileSheet.crop(8*width,8*height,width,height);
+        darkStoneTile = tileSheet.crop(233,264,30,height);
         gothicWindow = tileSheet.crop(8*width,8*height,width,height);
     }
 }

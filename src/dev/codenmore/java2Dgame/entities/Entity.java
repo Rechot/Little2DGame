@@ -1,12 +1,13 @@
 package dev.codenmore.java2Dgame.entities;
 
 import dev.codenmore.java2Dgame.Game;
+import dev.codenmore.java2Dgame.Handler;
 
 import java.awt.*;
 
 public abstract class Entity {
 
-    protected Game game;
+    protected Handler handler;
     protected float x,y; //Why not int, because calculations in our game will not result in fixed numbers.
     protected int width, height;
 
@@ -46,12 +47,12 @@ public abstract class Entity {
         this.height = height;
     }
 
-    public Entity(float x, float y, int width, int height, Game game){
+    public Entity(float x, float y, int width, int height, Handler handler){
       this.x = x;
       this.y = y;
       this.width = width;
       this.height = height;
-      this.game = game;
+      this.handler = handler;
     }
 
     public abstract void tick();
