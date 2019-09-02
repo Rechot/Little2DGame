@@ -2,7 +2,6 @@ package dev.codenmore.java2Dgame;
 
 import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.graphics.GameCamera;
-import dev.codenmore.java2Dgame.graphics.ImageLoader;
 import dev.codenmore.java2Dgame.display.Display;
 import dev.codenmore.java2Dgame.graphics.SpriteSheet;
 import dev.codenmore.java2Dgame.input.KeyManager;
@@ -20,7 +19,7 @@ public class Game implements Runnable{
     // InstanceFields
 
     public String title;
-    private int width, heigth, x;
+    private int width, height, x;
     private boolean isGameRunning = false;
 
     private Display display;
@@ -54,11 +53,11 @@ public class Game implements Runnable{
     private Handler handler;
 
     // Constructors
-    // Game sets and stores via InstanceFileds int height, width and String title in order
+    // Game sets and stores via InstanceFields int height, width and String title in order
     // to pass it to Display constructor in init() method
-    public Game(String title, int width, int heigth){
+    public Game(String title, int width, int height){
        this.width = width;
-       this.heigth = heigth;
+       this.height = height;
        this.title = title;
        keyManager = new KeyManager();
     }
@@ -70,7 +69,7 @@ public class Game implements Runnable{
     }
 
     public int getHeight() {
-        return heigth;
+        return height;
     }
 
     public KeyManager getKeyManager(){
@@ -85,15 +84,15 @@ public class Game implements Runnable{
 
     // Prepare method of game, initializing graphics
     private void init(){
-        display = new Display(title, width, heigth);
+        display = new Display(title, width, height);
         display.getJFrame().addKeyListener(keyManager);
 
         Assets.initAssets();
 
-        gameCamera = new GameCamera(0,0, this);
         handler = new Handler(this);
-
         gameState = new GameState(handler);
+        gameCamera = new GameCamera(0,0, handler);
+
         menuState = new GameState(handler);        //ToBeDone.
         settingsState = new GameState(handler);    //ToBeDone.
 
@@ -120,7 +119,7 @@ public class Game implements Runnable{
         graphics = bufferStrategy.getDrawGraphics();    // our paintbrush, allow drawing things to the canvas
                                                         // drawing rectangles, circles, lines, whole images
         // Clear screen
-        graphics.clearRect(0,0,width,heigth);
+        graphics.clearRect(0,0,width, height);
         // Draw here.
 
         //graphics.drawImage(Assets.adventurer,64+ x,64,null); //for tests

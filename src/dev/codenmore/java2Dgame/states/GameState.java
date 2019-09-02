@@ -14,15 +14,15 @@ public class GameState extends State{
 
     //For tests purposes
     private Player player;
-    private Level level01;
+    private Level currentLevel;
 
     //Constructors
     public GameState(Handler handler){
         super(handler);
-        level01 = new Level("resources/leveldata/level01.txt", handler);
-        handler.setLevel(level01);
-        player = new Player(level01.getPlayerPositionX() * Creature.DEFAULT_CREATURE_WIDTH,
-                            level01.getPlayerPositionY() * Creature.DEFAULT_CREATURE_HEIGHT,
+        currentLevel = new Level("resources/leveldata/level01.txt", handler);
+        handler.setLevel(currentLevel);
+        player = new Player(currentLevel.getPlayerPositionX() * Creature.DEFAULT_CREATURE_WIDTH,
+                            currentLevel.getPlayerPositionY() * Creature.DEFAULT_CREATURE_HEIGHT,
                             100, handler);
         //game.getGameCamera().move(0,0); //Test purposes
     }
@@ -31,14 +31,14 @@ public class GameState extends State{
 
     @Override
     public void tick() {
-        level01.tick();
+        currentLevel.tick();
         player.tick();
         //game.getGameCamera().move(1,1); //Test purposes
     }
 
     @Override
     public void render(Graphics graphics) {
-        level01.render(graphics);
+        currentLevel.render(graphics);
         player.render(graphics);
     }
 }

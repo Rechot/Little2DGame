@@ -38,6 +38,14 @@ public class Level {
         return playerPositionY;
     }
 
+    public int getLevelWidth() {
+        return levelWidth;
+    }
+
+    public int getLevelHeight() {
+        return levelHeight;
+    }
+
     //Methods
 
     public Tile getTile(int x, int y){

@@ -88,6 +88,9 @@ public abstract class Creature extends Entity {
             if(!collisionWithTile(temporalX, (int) (y + collisionBounds.y) / Tile.TILE_HEIGHT) &&
                     !collisionWithTile(temporalX, (int) (y + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT)){
                 x += xMove;
+            } else {
+                //Collision with solid tile happens, bellow is a hack that makes your player be right next to solid surface.
+                x = temporalX * Tile.TILE_WIDTH - collisionBounds.x - collisionBounds.width -1;
             }
         }
         //Moving left
@@ -96,6 +99,9 @@ public abstract class Creature extends Entity {
             if(!collisionWithTile(temporalX, (int) (y + collisionBounds.y) / Tile.TILE_HEIGHT) &&
                     !collisionWithTile(temporalX, (int) (y + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT)){
                 x += xMove;
+            } else {
+                //Collision with solid tile happens, bellow is a hack that makes your player be right next to solid surface.
+                x = temporalX * Tile.TILE_WIDTH  + Tile.TILE_WIDTH - collisionBounds.x;
             }
         }
     }
@@ -109,6 +115,9 @@ public abstract class Creature extends Entity {
             if(!collisionWithTile((int) (x + collisionBounds.x) / Tile.TILE_HEIGHT, temporalY ) &&
                     !collisionWithTile((int) (x + collisionBounds.x + collisionBounds.width) / Tile.TILE_HEIGHT, temporalY)){
                 y += yMove;
+            } else {
+                //Collision with solid tile happens, bellow is a hack that makes your player be right next to solid surface.
+                y = temporalY * Tile.TILE_HEIGHT - collisionBounds.y - collisionBounds.height -1;
             }
         }
         //Moving up
@@ -117,6 +126,9 @@ public abstract class Creature extends Entity {
             if(!collisionWithTile((int) (x + collisionBounds.x) / Tile.TILE_HEIGHT, temporalY ) &&
                     !collisionWithTile((int) (x + collisionBounds.x + collisionBounds.width) / Tile.TILE_HEIGHT, temporalY)){
                 y += yMove;
+            } else {
+                //Collision with solid tile happens, bellow is a hack that makes your player be right next to solid surface.
+                y = temporalY * Tile.TILE_HEIGHT  + Tile.TILE_HEIGHT - collisionBounds.y;
             }
         }
     }
