@@ -29,12 +29,12 @@ public class KeyManager implements KeyListener {
     @Override //Method called whenever user press key on keyboard.
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()] = true;
-        System.out.println("Key pressed");
+        //System.out.println("Key pressed");
     }
 
     @Override  //Method called whenever user stop pressing key on keyboard.
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()] = false;
-        System.out.println("Key released");
+        //System.out.println("Key released");
     }
 }

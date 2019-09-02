@@ -7,13 +7,14 @@ import dev.codenmore.java2Dgame.tile.Tile;
 public abstract class Creature extends Entity {
 
     public static final int DEFAULT_HEALTH = 10;
-    public static final float DEFAULT_SPEED = 6.0f;
+    public static final float DEFAULT_SPEED = 3.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 128,
                             DEFAULT_CREATURE_HEIGHT = 128; //My tile game will have squares of 128 x 128 pixels.
 
     protected int health;
     protected float speed;
     protected float xMove, yMove;
+
 
     //Getters
 
@@ -53,16 +54,16 @@ public abstract class Creature extends Entity {
 
     //Constructors
 
-    public Creature(float x, float y, int width, int height, int health, float speed, Handler handler) {
-        super(x, y, width, height, handler);
+    public Creature(float x, float y, int width, int height, int health, float speed, Handler handler, String name) {
+        super(x, y, width, height, handler, name);
         this.health = health;
         this.speed = speed;
         xMove = 0;
         yMove = 0;
     }
 
-    public Creature(float x, float y, int width, int height, Handler handler) {
-        super(x, y, width, height, handler);
+    public Creature(float x, float y, int width, int height, Handler handler, String name) {
+        super(x, y, width, height, handler, name);
         this.health = DEFAULT_HEALTH;
         this.speed = DEFAULT_SPEED;
         xMove = 0;
@@ -72,8 +73,12 @@ public abstract class Creature extends Entity {
     //Methods
 
     public void move(){
-        moveX();
-        moveY();
+        if(!checkEntityCollisions(xMove,0f))
+            {System.out.println(xMove);
+            moveX();}
+        if(!checkEntityCollisions(0f,yMove))
+            {System.out.println(yMove);
+            moveY();}
     }
 
     public void moveX(){

@@ -15,16 +15,16 @@ public class Player extends Creature{
 
     //Constructors
 
-    public Player(float x, float y, int health, float speed, Handler handler) {
-        super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, health, speed, handler);
+    public Player(float x, float y, int health, float speed, Handler handler, String name) {
+        super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, health, speed, handler, name);
         collisionBounds.x = 40;
         collisionBounds.y = 64;
         collisionBounds.width = 32;
         collisionBounds.height = 52;
     }
 
-    public Player(float x, float y, int health, Handler handler) {
-        super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, health, Creature.DEFAULT_SPEED, handler);
+    public Player(float x, float y, int health, Handler handler, String name) {
+        super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, health, Creature.DEFAULT_SPEED, handler, name);
         collisionBounds.x = 40;
         collisionBounds.y = 64;
         collisionBounds.width = 32;

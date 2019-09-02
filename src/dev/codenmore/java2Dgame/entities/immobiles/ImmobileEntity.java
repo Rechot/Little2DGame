@@ -5,8 +5,8 @@ import dev.codenmore.java2Dgame.entities.Entity;
 
 public abstract class ImmobileEntity extends Entity {
 
-    public ImmobileEntity(float x, float y, int width, int height, Handler handler){
-        super(x, y, width, height,handler);
+    public ImmobileEntity(float x, float y, int width, int height, Handler handler, String name){
+        super(x, y, width, height, handler, name);
     }
 
 }
