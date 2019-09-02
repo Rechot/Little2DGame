@@ -7,7 +7,8 @@ public class Assets {
     //InstanceFields
     //TestAssets
     //Entire class should be refactored.
-    public static BufferedImage adventurer, groundTile, darkGroundTile, stoneTile, darkStoneTile, gothicWindow;
+    public static BufferedImage adventurer, groundTile, darkGroundTile, stoneTile, darkStoneTile, gothicWindow,
+                                simpleTree;
 
     //Actual Assets
     public static BufferedImage[] adventurerIdle;
@@ -25,6 +26,7 @@ public class Assets {
     public static void initAssets(){
         SpriteSheet adventurerSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Adventurer Sprite Sheet v1.1.png"));
         SpriteSheet tileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Tileset.png"));
+        SpriteSheet treesAndGrassTileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/TreesAndGrassTiles.png"));
 
         //Initializing adventurer animation sprites
 
@@ -45,10 +47,13 @@ public class Assets {
         adventurerKO = adventurerSheet.cropInALoopFromSpriteSheet(0,160,width, height,7,adventurerSheet,adventurerKO);
 
         adventurer = adventurerSheet.crop(0,0,width,height);
+
         groundTile = tileSheet.crop(0,0,width,height);
         darkGroundTile = tileSheet.crop(0,8*height,width,height);
         stoneTile = tileSheet.crop(8*width,0,width,height);
         darkStoneTile = tileSheet.crop(233,264,30,height);
         gothicWindow = tileSheet.crop(8*width,8*height,width,height);
+
+        simpleTree = treesAndGrassTileSheet.crop(258,126,90,130);
     }
 }

@@ -1,11 +1,8 @@
-package dev.codenmore.java2Dgame.entities.creature;
+package dev.codenmore.java2Dgame.entities.creatures;
 
-import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.entities.Entity;
 import dev.codenmore.java2Dgame.tile.Tile;
-
-import java.awt.*;
 
 public abstract class Creature extends Entity {
 

@@ -1,4 +1,4 @@
-package dev.codenmore.java2Dgame.entities.creature;
+package dev.codenmore.java2Dgame.entities.creatures;
 
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.graphics.Animation;

@@ -1,6 +1,10 @@
 package dev.codenmore.java2Dgame.levels;
 
 import dev.codenmore.java2Dgame.Handler;
+import dev.codenmore.java2Dgame.entities.EntityManager;
+import dev.codenmore.java2Dgame.entities.creatures.Creature;
+import dev.codenmore.java2Dgame.entities.creatures.Player;
+import dev.codenmore.java2Dgame.entities.immobiles.Tree;
 import dev.codenmore.java2Dgame.tile.Tile;
 import dev.codenmore.java2Dgame.utilities.Utilities;
 
@@ -16,15 +20,25 @@ public class Level {
 
     private int[][] tiles_ID;
     private String[] tokens;
-    private Tile t;
+
+    private EntityManager entityManager;
 
     //Constructors
 
     public Level(String path, Handler handler){
         this.handler = handler;
+
         loadLevelFileAndParseItToStringArray(path);
         loadLevelSize(this.tokens);
         loadLevelPlayerPosition(this.tokens);
+
+        entityManager = new EntityManager(handler,
+                new Player(this.playerPositionX * Creature.DEFAULT_CREATURE_WIDTH,
+                this.playerPositionY * Creature.DEFAULT_CREATURE_HEIGHT, 100,handler));
+        entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 2, handler));
+        entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT * 4, handler));
+        entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 1, Tile.TILE_HEIGHT * 5, handler));
+
         loadLevelContentsByID(this.tokens);
     }
 
@@ -59,10 +73,12 @@ public class Level {
     }
 
     public void tick(){
-
+        entityManager.tick();
     }
 
     public void render(Graphics graphics){
+
+        //Rendering tiles.
 
         // Method adjusted so the render() method will only render part of map user actually see
         int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
@@ -80,6 +96,11 @@ public class Level {
                         (int) (y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
+
+        //After rendering tiles we render entities.
+
+        entityManager.render(graphics);
+
     }
 
     private void loadLevelFileAndParseItToStringArray(String pathToFile){
