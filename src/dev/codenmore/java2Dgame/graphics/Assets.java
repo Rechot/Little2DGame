@@ -23,7 +23,7 @@ public class Assets {
         SpriteSheet adventurerSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Adventurer Sprite Sheet v1.1.png"));
         SpriteSheet tileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Tileset.png"));
         SpriteSheet treesAndGrassTileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/TreesAndGrassTiles.png"));
-        SpriteSheet menuStartButtonSpriteSheet = new SpriteSheet((ImageLoader.LoadImage("MenuStartButtonSpriteSheet.png")));
+        SpriteSheet menuStartButtonSpriteSheet = new SpriteSheet((ImageLoader.LoadImage("/textures/MenuStartButtonSpriteSheet.png")));
 
         //Initializing adventurer animation sprites
 
