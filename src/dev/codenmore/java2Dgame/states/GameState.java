@@ -27,6 +27,8 @@ public class GameState extends State{
     @Override
     public void tick() {
         currentLevel.tick();
+        if(handler.getMouseManager().isRightMouseButtonPressed()&& handler.getMouseManager().isLeftMouseButtonPressed())
+        {State.setCurrentState(handler.getGame().menuState);}
 
         //game.getGameCamera().move(1,1); //Test purposes
     }

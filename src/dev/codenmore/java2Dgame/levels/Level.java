@@ -35,6 +35,7 @@ public class Level {
         entityManager = new EntityManager(handler,
                 new Player(this.playerPositionX * Creature.DEFAULT_CREATURE_WIDTH,
                 this.playerPositionY * Creature.DEFAULT_CREATURE_HEIGHT, 100, handler,"ED"));
+
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 2, handler));
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT * 4, handler));
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 1, Tile.TILE_HEIGHT * 5, handler));
@@ -138,7 +139,7 @@ public class Level {
             for (x=0; x<levelWidth; x++){
                 tiles_ID[x][y] = Utilities.parseInt(tokens[(x + y * levelWidth)+4]); //This is pure magic. However it works.
                 int tokenIndex = (x + y * levelWidth)+4;
-                System.out.println("x, y, token " + x +" "+ y + " "+ tokenIndex + " " + tokens[tokenIndex]);
+//                System.out.println("x, y, token " + x +" "+ y + " "+ tokenIndex + " " + tokens[tokenIndex]);
             }
         }
     }

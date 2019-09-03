@@ -2,6 +2,7 @@ package dev.codenmore.java2Dgame;
 
 import dev.codenmore.java2Dgame.graphics.GameCamera;
 import dev.codenmore.java2Dgame.input.KeyManager;
+import dev.codenmore.java2Dgame.input.MouseManager;
 import dev.codenmore.java2Dgame.levels.Level;
 
 public class Handler {
@@ -36,6 +37,8 @@ public class Handler {
     public KeyManager getKeyManager(){
         return game.getKeyManager();
     }
+
+    public MouseManager getMouseManager() { return game.getMouseManager();}
 
     public GameCamera getGameCamera(){
         return game.getGameCamera();

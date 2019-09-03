@@ -5,7 +5,10 @@ import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.graphics.GameCamera;
 import dev.codenmore.java2Dgame.graphics.SpriteSheet;
 import dev.codenmore.java2Dgame.input.KeyManager;
+import dev.codenmore.java2Dgame.input.MouseManager;
 import dev.codenmore.java2Dgame.states.GameState;
+import dev.codenmore.java2Dgame.states.MenuState;
+import dev.codenmore.java2Dgame.states.SettingsState;
 import dev.codenmore.java2Dgame.states.State;
 
 import java.awt.*;
@@ -35,16 +38,17 @@ public class Game implements Runnable{
     private double delta, fixedTimeSlicePerTick;
 
     //Temporal code
-    private BufferedImage testImage;
-    private SpriteSheet sheet;
+//    private BufferedImage testImage;
+//    private SpriteSheet sheet;
 
     //States of "game", like Setting, Main Menu, actual game;
-    private State gameState;
-    private State menuState;
-    private State settingsState;
+    public State gameState;
+    public State menuState;
+    public State settingsState;
 
     //Input
     private KeyManager keyManager;
+    private MouseManager mouseManager;
 
     //Camera
     private GameCamera gameCamera;
@@ -53,6 +57,7 @@ public class Game implements Runnable{
     private Handler handler;
 
     // Constructors
+
     // Game sets and stores via InstanceFields int height, width and String title in order
     // to pass it to Display constructor in init() method
     public Game(String title, int width, int height){
@@ -60,6 +65,7 @@ public class Game implements Runnable{
        this.height = height;
        this.title = title;
        keyManager = new KeyManager();
+       mouseManager = new MouseManager();
     }
 
     //Getters
@@ -76,6 +82,10 @@ public class Game implements Runnable{
         return keyManager;
     }
 
+    public MouseManager getMouseManager() {
+        return mouseManager;
+    }
+
     public GameCamera getGameCamera() {
         return gameCamera;
     }
@@ -84,8 +94,17 @@ public class Game implements Runnable{
 
     // Prepare method of game, initializing graphics
     private void init(){
+
         display = new Display(title, width, height);
+
+        // Adding KeyListener to JFrame
         display.getJFrame().addKeyListener(keyManager);
+
+        // Adding MouseListener and MouseMotionListener to both JFrame and Canvas, that way it should work.
+        display.getJFrame().addMouseListener(mouseManager);
+        display.getJFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
 
         Assets.initAssets();
 
@@ -93,8 +112,8 @@ public class Game implements Runnable{
         gameState = new GameState(handler);
         gameCamera = new GameCamera(0,0, handler);
 
-        menuState = new GameState(handler);        //ToBeDone.
-        settingsState = new GameState(handler);    //ToBeDone.
+        menuState = new MenuState(handler);        //ToBeDone.
+        settingsState = new SettingsState(handler);    //ToBeDone.
 
         State.setCurrentState(gameState);
     }
