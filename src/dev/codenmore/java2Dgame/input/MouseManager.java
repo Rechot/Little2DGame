@@ -1,5 +1,7 @@
 package dev.codenmore.java2Dgame.input;
 
+import dev.codenmore.java2Dgame.ui.UIManager;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,6 +13,8 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     private boolean leftMouseButtonPressed;
     private boolean rightMouseButtonPressed;
     private int mouseX, mouseY;
+
+    private UIManager uiManager;
 
     //Getters
 
@@ -29,6 +33,13 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     public int getMouseY() {
         return mouseY;
     }
+
+    //Setters
+
+    public void setUiManager(UIManager uiManager) {
+        this.uiManager = uiManager;
+    }
+
 
     //Methods
 
@@ -49,12 +60,14 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         if(e.getButton() == MouseEvent.BUTTON1) {leftMouseButtonPressed = false;}
         else
         if(e.getButton() == MouseEvent.BUTTON3) {rightMouseButtonPressed = false;}
+        if(uiManager != null) {uiManager.onMouseRelease(e);}
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
         mouseX = e.getX();
         mouseY = e.getY();
+        if(uiManager != null) {uiManager.onMouseMove(e);}
     }
 
     @Override

@@ -11,12 +11,8 @@ public class Assets {
                                 simpleTree;
 
     //Actual Assets
-    public static BufferedImage[] adventurerIdle;
-    public static BufferedImage[] adventurerWalk;
-    public static BufferedImage[] adventurerAtack01;
-    public static BufferedImage[] adventurerJump;
-    public static BufferedImage[] adventurerGotHit;
-    public static BufferedImage[] adventurerKO;
+    public static BufferedImage[] adventurerIdle, adventurerWalk, adventurerAtack01, adventurerJump, adventurerGotHit, adventurerKO;
+    public static BufferedImage[] menuButtonStart;
 
     private static final int width = 32, height = 32;
 
@@ -27,6 +23,7 @@ public class Assets {
         SpriteSheet adventurerSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Adventurer Sprite Sheet v1.1.png"));
         SpriteSheet tileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Tileset.png"));
         SpriteSheet treesAndGrassTileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/TreesAndGrassTiles.png"));
+        SpriteSheet menuStartButtonSpriteSheet = new SpriteSheet((ImageLoader.LoadImage("MenuStartButtonSpriteSheet.png")));
 
         //Initializing adventurer animation sprites
 
@@ -37,6 +34,8 @@ public class Assets {
         adventurerGotHit = new BufferedImage[4];
         adventurerKO = new BufferedImage[7];
 
+        menuButtonStart = new BufferedImage[2];
+
         //Cropping everything from sprite sheet;
 
         adventurerIdle = adventurerSheet.cropInALoopFromSpriteSheet(0,0,width, height,13,adventurerSheet,adventurerIdle);
@@ -45,6 +44,9 @@ public class Assets {
         adventurerJump = adventurerSheet.cropInALoopFromSpriteSheet(0,96,width, height,6,adventurerSheet,adventurerJump);
         adventurerGotHit = adventurerSheet.cropInALoopFromSpriteSheet(0,128,width, height,4,adventurerSheet,adventurerGotHit);
         adventurerKO = adventurerSheet.cropInALoopFromSpriteSheet(0,160,width, height,7,adventurerSheet,adventurerKO);
+
+        menuButtonStart[0] = menuStartButtonSpriteSheet.crop(0,0,275, 98);
+        menuButtonStart[1] = menuStartButtonSpriteSheet.crop(328,0,275, 98);
 
         adventurer = adventurerSheet.crop(0,0,width,height);
 
