@@ -99,6 +99,9 @@ public class Game implements Runnable{
 
         // Adding KeyListener to JFrame
         display.getJFrame().addKeyListener(keyManager);
+        display.getCanvas().addKeyListener(keyManager);
+        // Above statement must be added so whenever changing states e.g. from settingsState to gameState,
+        // or from menuState to gameState KeyManager won't loose focus.
 
         // Adding MouseListener and MouseMotionListener to both JFrame and Canvas, that way it should work.
         display.getJFrame().addMouseListener(mouseManager);
