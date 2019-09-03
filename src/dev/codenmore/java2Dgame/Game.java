@@ -1,8 +1,8 @@
 package dev.codenmore.java2Dgame;
 
+import dev.codenmore.java2Dgame.display.Display;
 import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.graphics.GameCamera;
-import dev.codenmore.java2Dgame.display.Display;
 import dev.codenmore.java2Dgame.graphics.SpriteSheet;
 import dev.codenmore.java2Dgame.input.KeyManager;
 import dev.codenmore.java2Dgame.states.GameState;
@@ -119,9 +119,9 @@ public class Game implements Runnable{
                                                         // drawing rectangles, circles, lines, whole images
         // Clear screen
         graphics.clearRect(0,0,width, height);
-        // Draw here.
 
-        //graphics.drawImage(Assets.adventurer,64+ x,64,null); //for tests
+        // Draw here.
+        //graphics.drawImage(Assets.adventurer,64+ x,64,null); //for tests only
         if(State.getCurrentState() != null) {State.getCurrentState().render(graphics);}
 
         // End drawing.

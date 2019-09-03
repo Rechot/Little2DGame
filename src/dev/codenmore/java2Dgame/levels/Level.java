@@ -123,8 +123,8 @@ public class Level {
     private void loadLevelSize(String[] tokens){
        this.levelWidth = Utilities.parseInt(tokens[0]);
        this.levelHeight = Utilities.parseInt(tokens[1]);
-        System.out.println("LevelWidth = " + levelWidth);
-        System.out.println("LevelHeight = " + levelHeight);
+        //System.out.println("LevelWidth = " + levelWidth);
+        //System.out.println("LevelHeight = " + levelHeight);
     }
 
     private void loadLevelPlayerPosition(String[] tokens){

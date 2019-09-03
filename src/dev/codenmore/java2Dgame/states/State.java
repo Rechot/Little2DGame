@@ -1,6 +1,5 @@
 package dev.codenmore.java2Dgame.states;
 
-import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.Handler;
 
 import java.awt.*;

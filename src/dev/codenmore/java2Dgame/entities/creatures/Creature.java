@@ -7,7 +7,7 @@ import dev.codenmore.java2Dgame.tile.Tile;
 public abstract class Creature extends Entity {
 
     public static final int DEFAULT_HEALTH = 10;
-    public static final float DEFAULT_SPEED = 3.0f;
+    public static final float DEFAULT_SPEED = 6.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 128,
                             DEFAULT_CREATURE_HEIGHT = 128; //My tile game will have squares of 128 x 128 pixels.
 

@@ -1,10 +1,8 @@
 package dev.codenmore.java2Dgame.entities;
 
-import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.Handler;
 
 import java.awt.*;
-import java.security.PublicKey;
 import java.util.Objects;
 
 public abstract class Entity {

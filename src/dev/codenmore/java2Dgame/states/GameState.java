@@ -1,8 +1,6 @@
 package dev.codenmore.java2Dgame.states;
 
 import dev.codenmore.java2Dgame.Handler;
-import dev.codenmore.java2Dgame.entities.creatures.Creature;
-import dev.codenmore.java2Dgame.entities.creatures.Player;
 import dev.codenmore.java2Dgame.levels.Level;
 
 import java.awt.*;

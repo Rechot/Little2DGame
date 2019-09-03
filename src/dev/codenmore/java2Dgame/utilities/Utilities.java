@@ -1,8 +1,5 @@
 package dev.codenmore.java2Dgame.utilities;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,12 +18,12 @@ public class Utilities {
             Stream<String> stream = Files.lines(Paths.get(path));
             // stream.forEach(System.out::println);
             // stream.forEach((p) -> System.out.println(p));
-            output = stream.toString(); System.out.println(output); // this will give you "java.util.stream.ReferencePipeline$Head@2ce96982"
+            output = stream.toString(); // this will give you "java.util.stream.ReferencePipeline$Head@2ce96982"
             output = stream.map(String::toString).collect(Collectors.joining("\n"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(output);
+        //System.out.println(output);
         //output = output.replace("\n"," ").replace("\r"," ");
         //System.out.println(output);
         return output;
