@@ -53,10 +53,10 @@ public class Player extends Creature{
         graphics.drawImage(getCurrentAnimationFrame(), (int)(x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //Bellow is the code for test purposes only.
-        graphics.setColor(Color.red);
-        graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
-                (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
-               collisionBounds.width, collisionBounds.height);
+//        graphics.setColor(Color.red);
+//        graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
+//                (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
+//               collisionBounds.width, collisionBounds.height);
     }
 
     private void getInput(){

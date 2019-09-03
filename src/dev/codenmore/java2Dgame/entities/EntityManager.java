@@ -5,6 +5,7 @@ import dev.codenmore.java2Dgame.entities.creatures.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class EntityManager {
 
@@ -14,6 +15,14 @@ public class EntityManager {
     private Player player; //Special Entity
 
     private ArrayList<Entity> entities;
+    private Comparator<Entity> renderOrderSorter = new Comparator<Entity>(){
+        @Override
+        public int compare(Entity a, Entity b) {
+            if(a.getY() + a.getHeight() <= b.getY() + b.getHeight())
+                return -1;
+            else return 1;
+        }
+    };
 
     //Constructors
 
@@ -25,8 +34,6 @@ public class EntityManager {
     }
 
     //Getters
-
-
 
     public Handler getHandler() {
         return handler;
@@ -47,6 +54,7 @@ public class EntityManager {
             Entity e = entities.get(i);
             e.tick();
         }
+        entities.sort(renderOrderSorter);
     }
 
     public void render(Graphics graphics){
