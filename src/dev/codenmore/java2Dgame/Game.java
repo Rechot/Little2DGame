@@ -177,7 +177,7 @@ public class Game implements Runnable{
             }
 
             if(timer >= oneSecondInNanoseconds){
-                System.out.println("Ticks and frames: " + ticks);
+                //System.out.println("Ticks and frames: " + ticks);
                 ticks = 0;
                 timer = 0;
             }

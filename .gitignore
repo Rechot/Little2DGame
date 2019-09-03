@@ -8,6 +8,9 @@ out/
 *.iml
 .idea/*
 
+#Visual Studio Code settings
+.vscode/*
+
 #Version control
 vcs.xml
 

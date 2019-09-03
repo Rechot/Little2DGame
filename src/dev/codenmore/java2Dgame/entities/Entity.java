@@ -72,8 +72,8 @@ public abstract class Entity {
         if (this == o) return true;
         if (!(o instanceof Entity)) return false;
         Entity entity = (Entity) o;
-        return Float.compare(entity.getX(), getX()) == 0 &&
-                Float.compare(entity.getY(), getY()) == 0 &&
+        return //Float.compare(entity.getX(), getX()) == 0 &&       // auto generated line of code that made player not be able to move;
+                // Float.compare(entity.getY(), getY()) == 0 &&     //
                 getWidth() == entity.getWidth() &&
                 getHeight() == entity.getHeight() &&
                 collisionBounds.equals(entity.collisionBounds) &&
@@ -91,9 +91,7 @@ public abstract class Entity {
     public abstract void render(Graphics graphics);
 
     public Rectangle getCollisionBounds(float xOffset, float yOffset){
-        //System.out.println("x = " + x +" , y = " + y + " , collisionBounds.x = " + collisionBounds.x + " , collisionBounds.y = " + collisionBounds.y);
-        //System.out.println("xOffset = " + xOffset +" , yOffset = " + yOffset);
-        //System.out.println("");
+
         return new Rectangle((int) (x + collisionBounds.x + xOffset), (int) (y + collisionBounds.y + yOffset),
                 collisionBounds.width, collisionBounds.height);
 
@@ -102,16 +100,11 @@ public abstract class Entity {
     //Method test whether (this.) Entity collides with any other entity, that poses collision boundaries.
     public boolean checkEntityCollisions(float xOffset, float yOffset){
         for(Entity e : handler.getLevel().getEntityManager().getEntities()){
-            //System.out.println(handler.getLevel().getEntityManager().getEntities().size());
-            //System.out.println(e.name);
             if(e.equals(this))
-                { //System.out.println("Weszło.");
-                continue;}
+                {continue;}
             if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(xOffset,yOffset)))
-                {   //System.out.println("True");
-                    return true;}
+                {return true;}
         }
-        //System.out.println("False");
         return false;
     }
 }

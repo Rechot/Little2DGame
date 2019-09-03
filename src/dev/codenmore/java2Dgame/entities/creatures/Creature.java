@@ -73,12 +73,12 @@ public abstract class Creature extends Entity {
     //Methods
 
     public void move(){
-        if(!checkEntityCollisions(xMove,0f))
-            {System.out.println(xMove);
-            moveX();}
-        if(!checkEntityCollisions(0f,yMove))
-            {System.out.println(yMove);
-            moveY();}
+        boolean canIWalkX = !checkEntityCollisions(xMove,0f);
+        boolean canIWalkY = !checkEntityCollisions(0, yMove);
+
+        if(canIWalkX) moveX();
+
+        if(canIWalkY) moveY();
     }
 
     public void moveX(){
