@@ -2,6 +2,7 @@ package dev.codenmore.java2Dgame.states;
 
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.levels.Level;
+import dev.codenmore.java2Dgame.ui.UIManager;
 
 import java.awt.*;
 
@@ -29,8 +30,12 @@ public class GameState extends State{
         currentLevel.tick();
         if(handler.getMouseManager().isRightMouseButtonPressed()&& handler.getMouseManager().isLeftMouseButtonPressed())
         {State.setCurrentState(handler.getGame().menuState);}
-
         //game.getGameCamera().move(1,1); //Test purposes
+        // handler.getMouseManager().setUiManager(handler.getGame().menuState.getUiManager);
+        // The above does not work, getUIManager is not visible, don't know why though ...
+        // The private field uiManager and the getter for it is there in Menu State class ...
+        // The below works.
+        if (handler.getMouseManager().getUiManager() == null) { handler.getMouseManager().setUiManager(handler.getUiManager());}
     }
 
     @Override

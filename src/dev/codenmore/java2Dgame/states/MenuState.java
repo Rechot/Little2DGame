@@ -1,6 +1,5 @@
 package dev.codenmore.java2Dgame.states;
 
-import dev.codenmore.java2Dgame.Game;
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.ui.ClickListener;
@@ -17,6 +16,7 @@ public class MenuState extends State{
         super(handler);
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUiManager(uiManager);
+        handler.setUiManager(uiManager);
 
         uiManager.addObject(new UIImageButton(handler.getGame().getWidth() / 2, handler.getGame().getHeight() / 2,
                 275, 98,
@@ -32,6 +32,15 @@ public class MenuState extends State{
             }
         }));
     }
+
+    //Getters
+
+    public UIManager getUiManager() {
+        return uiManager;
+    }
+
+
+    //Methods
 
     @Override
     public void tick() {

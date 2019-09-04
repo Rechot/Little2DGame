@@ -34,6 +34,10 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         return mouseY;
     }
 
+    public UIManager getUiManager() {
+        return uiManager;
+    }
+
     //Setters
 
     public void setUiManager(UIManager uiManager) {

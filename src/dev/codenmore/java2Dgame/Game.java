@@ -115,7 +115,7 @@ public class Game implements Runnable{
         gameState = new GameState(handler);
         gameCamera = new GameCamera(0,0, handler);
 
-        menuState = new MenuState(handler);        //ToBeDone.
+        menuState = new MenuState(handler);
         settingsState = new SettingsState(handler);    //ToBeDone.
 
         State.setCurrentState(gameState);
