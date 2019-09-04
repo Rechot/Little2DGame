@@ -76,7 +76,7 @@ public abstract class Entity {
         if (this == o) return true;
         if (!(o instanceof Entity)) return false;
         Entity entity = (Entity) o;
-        return //Float.compare(entity.getX(), getX()) == 0 &&       // auto generated line of code that made player not be able to move;
+        return //Float.compare(entity.getX(), getX()) == 0 &&       // auto generated line of code that made player not able to move;
                 // Float.compare(entity.getY(), getY()) == 0 &&     //
                 getWidth() == entity.getWidth() &&
                 getHeight() == entity.getHeight() &&

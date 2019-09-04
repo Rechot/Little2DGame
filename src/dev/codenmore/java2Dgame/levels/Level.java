@@ -3,6 +3,7 @@ package dev.codenmore.java2Dgame.levels;
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.entities.EntityManager;
 import dev.codenmore.java2Dgame.entities.creatures.Creature;
+import dev.codenmore.java2Dgame.entities.creatures.MinotaurMonster;
 import dev.codenmore.java2Dgame.entities.creatures.Player;
 import dev.codenmore.java2Dgame.entities.immobiles.Tree;
 import dev.codenmore.java2Dgame.tile.Tile;
@@ -39,6 +40,7 @@ public class Level {
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 2, handler));
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT * 4, handler));
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 1, Tile.TILE_HEIGHT * 5, handler));
+        entityManager.addEntity(new MinotaurMonster(Tile.TILE_WIDTH * 5,Tile.TILE_HEIGHT * 5, 10, handler,"Minotaur"));
 
         loadLevelContentsByID(this.tokens);
 
