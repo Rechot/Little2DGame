@@ -15,7 +15,7 @@ public abstract class State {
         this.handler = handler;
     }
 
-    //In-game state manager
+    //In-game state manager, static getter and setter
     private static State currentState = null;
 
     public static void setCurrentState(State state){

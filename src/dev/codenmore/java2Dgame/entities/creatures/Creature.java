@@ -11,7 +11,6 @@ public abstract class Creature extends Entity {
     public static final int DEFAULT_CREATURE_WIDTH = 128,
                             DEFAULT_CREATURE_HEIGHT = 128; //My tile game will have squares of 128 x 128 pixels.
 
-    protected int health;
     protected float speed;
     protected float xMove, yMove;
 
@@ -19,7 +18,7 @@ public abstract class Creature extends Entity {
     //Getters
 
     public int getHealth() {
-        return health;
+        return healthPoints;
     }
 
     public float getSpeed() {
@@ -37,7 +36,7 @@ public abstract class Creature extends Entity {
     //Setters
 
     public void setHealth(int health) {
-        this.health = health;
+        this.healthPoints = health;
     }
 
     public void setSpeed(float speed) {
@@ -52,11 +51,15 @@ public abstract class Creature extends Entity {
         return yMove;
     }
 
+    public void setCreatureIsActive(boolean creatureIsActive) {
+        this.creatureIsActive = creatureIsActive;
+    }
+
     //Constructors
 
     public Creature(float x, float y, int width, int height, int health, float speed, Handler handler, String name) {
         super(x, y, width, height, handler, name);
-        this.health = health;
+        this.healthPoints = health;
         this.speed = speed;
         xMove = 0;
         yMove = 0;
@@ -64,7 +67,7 @@ public abstract class Creature extends Entity {
 
     public Creature(float x, float y, int width, int height, Handler handler, String name) {
         super(x, y, width, height, handler, name);
-        this.health = DEFAULT_HEALTH;
+        this.healthPoints = DEFAULT_HEALTH;
         this.speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
@@ -133,6 +136,13 @@ public abstract class Creature extends Entity {
                 y = temporalY * Tile.TILE_HEIGHT  + Tile.TILE_HEIGHT - collisionBounds.y;
             }
         }
+    }
+
+    @Override
+    public void hurt(int healthPointsAmount){
+        healthPoints -= healthPointsAmount;
+        if(healthPoints <= 0 ) { creatureIsActive = false; }
+        die();
     }
 
     protected boolean collisionWithTile(int x, int y){

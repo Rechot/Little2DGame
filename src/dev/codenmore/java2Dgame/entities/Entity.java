@@ -14,6 +14,8 @@ public abstract class Entity {
     protected Rectangle collisionBounds;
     protected Handler handler;
     protected String name;
+    protected boolean creatureIsActive = true;
+    protected int healthPoints;
 
     //Getters
 
@@ -31,6 +33,10 @@ public abstract class Entity {
 
     public int getHeight() {
         return height;
+    }
+
+    public boolean isCreatureIsActive() {
+        return creatureIsActive;
     }
 
     //Setters
@@ -83,6 +89,10 @@ public abstract class Entity {
     public int hashCode() {
         return Objects.hash(getX(), getY(), getWidth(), getHeight(), collisionBounds, handler, name);
     }
+
+    public void hurt( int healthPoints){};
+
+    public void die(){};
 
     public abstract void tick();
 
