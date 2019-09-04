@@ -46,8 +46,6 @@ public class MinotaurMonster extends Creature{
     }
 
     private BufferedImage getCurrentAnimationFrame(){
-//        if(healthPoints <= 0) { return animationGotHit.getCurrentAnimationFrame(); }
-//        else if ()
             return animationIdle.getCurrentAnimationFrame();
     }
 }
