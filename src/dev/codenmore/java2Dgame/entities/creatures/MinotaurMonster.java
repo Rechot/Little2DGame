@@ -46,6 +46,13 @@ public class MinotaurMonster extends Creature{
     }
 
     private BufferedImage getCurrentAnimationFrame(){
+        if(entityHurtAnimation){
+            this.setEntityHurtAnimation(false);
+            return animationGotHit.getCurrentAnimationFrame();
+        } else if (entityDeathAnimation){
+            this.setEntityDeathAnimation(false);
+            return animationDies.getCurrentAnimationFrame();
+        } else
             return animationIdle.getCurrentAnimationFrame();
     }
 }

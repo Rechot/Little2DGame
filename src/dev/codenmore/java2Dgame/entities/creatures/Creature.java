@@ -6,7 +6,7 @@ import dev.codenmore.java2Dgame.tile.Tile;
 
 public abstract class Creature extends Entity {
 
-    public static final int DEFAULT_HEALTH = 10;
+
     public static final float DEFAULT_SPEED = 6.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 128,
                             DEFAULT_CREATURE_HEIGHT = 128; //My tile game will have squares of 128 x 128 pixels.
@@ -16,10 +16,6 @@ public abstract class Creature extends Entity {
 
 
     //Getters
-
-    public int getHealth() {
-        return healthPoints;
-    }
 
     public float getSpeed() {
         return speed;
@@ -35,10 +31,6 @@ public abstract class Creature extends Entity {
 
     //Setters
 
-    public void setHealth(int health) {
-        this.healthPoints = health;
-    }
-
     public void setSpeed(float speed) {
         this.speed = speed;
     }
@@ -49,10 +41,6 @@ public abstract class Creature extends Entity {
 
     public float getyMove() {
         return yMove;
-    }
-
-    public void setCreatureIsActive(boolean creatureIsActive) {
-        this.creatureIsActive = creatureIsActive;
     }
 
     //Constructors
@@ -67,7 +55,6 @@ public abstract class Creature extends Entity {
 
     public Creature(float x, float y, int width, int height, Handler handler, String name) {
         super(x, y, width, height, handler, name);
-        this.healthPoints = DEFAULT_HEALTH;
         this.speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
@@ -138,12 +125,6 @@ public abstract class Creature extends Entity {
         }
     }
 
-    @Override
-    public void hurt(int healthPointsAmount){
-        healthPoints -= healthPointsAmount;
-        if(healthPoints <= 0 ) { creatureIsActive = false; }
-        die();
-    }
 
     protected boolean collisionWithTile(int x, int y){
         return handler.getLevel().getTile(x,y).isSolid();

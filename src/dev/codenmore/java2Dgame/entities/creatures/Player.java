@@ -7,6 +7,7 @@ import dev.codenmore.java2Dgame.graphics.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class Player extends Creature{
 
@@ -16,6 +17,7 @@ public class Player extends Creature{
     private Animation animationMeleeAttack;
         //Attack timer, time in which single attack is performed
     private long lastAttackTimer, attackCooldown = 750, attackTimer = attackCooldown;
+    private Rectangle attackRectangleArea;
 
     //Constructors
 
@@ -23,7 +25,7 @@ public class Player extends Creature{
         super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, health, speed, handler, name);
         collisionBounds.x = 40;
         collisionBounds.y = 64;
-        collisionBounds.width = 32;
+        collisionBounds.width = 36;
         collisionBounds.height = 52;
     }
 
@@ -53,6 +55,7 @@ public class Player extends Creature{
         //Animation
         animationIdle.tick();
         animationWalk.tick();
+        animationMeleeAttack.tick();
 
         //Movement
         getInput();
@@ -69,10 +72,31 @@ public class Player extends Creature{
         graphics.drawImage(getCurrentAnimationFrame(), (int)(x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //Bellow is the code for test purposes only.
-//        graphics.setColor(Color.red);
-//        graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
-//                (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
-//               collisionBounds.width, collisionBounds.height);
+        graphics.setColor(Color.blue);
+        graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
+                (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
+               collisionBounds.width, collisionBounds.height);
+        if(handler.getKeyManager().attackDown || handler.getKeyManager().attackUp || handler.getKeyManager().attackRight || handler.getKeyManager().attackLeft) {
+            graphics.setColor(Color.green);
+            graphics.fillRect((int) (attackRectangleArea.x - handler.getGameCamera().getxOffset()),
+                    (int) (attackRectangleArea.y - handler.getGameCamera().getyOffset()),
+                    attackRectangleArea.width, attackRectangleArea.height);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Player player = (Player) o;
+        return lastAttackTimer == player.lastAttackTimer &&
+                attackCooldown == player.attackCooldown &&
+                attackTimer == player.attackTimer &&
+                Objects.equals(animationIdle, player.animationIdle) &&
+                Objects.equals(animationWalk, player.animationWalk) &&
+                Objects.equals(animationMeleeAttack, player.animationMeleeAttack) &&
+                Objects.equals(attackRectangleArea, player.attackRectangleArea);
     }
 
     private void getInput(){
@@ -92,8 +116,8 @@ public class Player extends Creature{
         lastAttackTimer = System.currentTimeMillis();
         if(attackTimer <  attackCooldown) {return;}
 
-        Rectangle attackRectangleArea = new Rectangle();
-        int attackRectangleAreaSize = 40; //pixels, basically the reach of an attack in pixels,
+        attackRectangleArea = new Rectangle();
+        int attackRectangleAreaSize = 50; //pixels, basically the reach of an attack in pixels,
         // our attackArea will be a square width = height = attackRectangleAreaSize;
         // that square will be positioned in a way, that one of its edges will adjoin the edge of a player's collision boundaries.
         attackRectangleArea.width = attackRectangleAreaSize;
@@ -107,11 +131,11 @@ public class Player extends Creature{
         } else if(handler.getKeyManager().attackDown){
             attackRectangleArea.x = collisionBounds.x + collisionBounds.width / 2 - attackRectangleAreaSize / 2;
             attackRectangleArea.y = collisionBounds.y + collisionBounds.height;
-        } else if(handler.getKeyManager().attackRight){
-            attackRectangleArea.x = collisionBounds.x + attackRectangleAreaSize;
-            attackRectangleArea.y = collisionBounds.y + collisionBounds.height / 2 - attackRectangleAreaSize / 2;
         } else if(handler.getKeyManager().attackLeft){
-            attackRectangleArea.x = collisionBounds.x - collisionBounds.width;
+            attackRectangleArea.x = collisionBounds.x + collisionBounds.width;
+            attackRectangleArea.y = collisionBounds.y + collisionBounds.height / 2 - attackRectangleAreaSize / 2;
+        } else if(handler.getKeyManager().attackRight){
+            attackRectangleArea.x = collisionBounds.x - attackRectangleAreaSize;
             attackRectangleArea.y = collisionBounds.y + collisionBounds.height / 2 - attackRectangleAreaSize / 2;
         } else {
             return;
@@ -121,16 +145,24 @@ public class Player extends Creature{
 
         // Now checking for the attacks after setting attack area
         for(Entity e : handler.getLevel().getEntityManager().getEntities()){
-            if(equals(this)) { continue;}
+            if(e.equals(this)) {
+                System.out.println("Weszło");
+                continue;
+            }
             if(e.getCollisionBounds(0,0).intersects(attackRectangleArea)){
+                System.out.println(e.getCollisionBounds(0,0).intersects(attackRectangleArea));
                 e.hurt(1);
+                System.out.println(e.getName() + " " + e.getCurrentHealthPoints());
                 return;
             }
         }
     }
 
     private BufferedImage getCurrentAnimationFrame(){
-         if(xMove >0 || xMove < 0 || yMove > 0 || yMove < 0){ return  animationWalk.getCurrentAnimationFrame(); }
+         if(xMove >0 || xMove < 0 || yMove > 0 || yMove < 0)
+            { return  animationWalk.getCurrentAnimationFrame(); }
+         else if(handler.getKeyManager().attackDown || handler.getKeyManager().attackUp || handler.getKeyManager().attackRight || handler.getKeyManager().attackLeft)
+            { return  animationMeleeAttack.getCurrentAnimationFrame(); }
          else { return animationIdle.getCurrentAnimationFrame(); }
     }
 }

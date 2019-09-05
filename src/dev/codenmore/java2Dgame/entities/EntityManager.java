@@ -50,13 +50,12 @@ public class EntityManager {
 
     //Methods
 
-    //Need to be refactor vis iteretor
     public void tick(){
         Iterator<Entity> iterator = entities.iterator();
         while( iterator.hasNext()){
             Entity e = iterator.next();
             e.tick();
-            if(!e.isCreatureIsActive()) {iterator.remove();}
+            if(!e.isEntityIsActive()) {iterator.remove();}
         }
         entities.sort(renderOrderSorter);
     }

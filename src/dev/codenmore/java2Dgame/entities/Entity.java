@@ -9,13 +9,35 @@ public abstract class Entity {
 
     //InstanceFields
 
+    public static final int DEFAULT_HEALTH = 3;
+
     protected float x,y; //Why not int, because calculations in our game will not result in fixed numbers.
     protected int width, height;
     protected Rectangle collisionBounds;
     protected Handler handler;
     protected String name;
-    protected boolean creatureIsActive = true;
+    protected boolean entityIsActive = true;
+    protected boolean entityHasAnimation = true;
+    protected boolean entityHurtAnimation = false;
+    protected boolean entityDeathAnimation = false;
+    protected boolean entityCanBeHurt = true;
     protected int healthPoints;
+    protected int currentHealthPoints;
+
+
+    //Constructors
+
+    public Entity(float x, float y, int width, int height, Handler handler, String name){
+      this.x = x;
+      this.y = y;
+      this.width = width;
+      this.height = height;
+      this.handler = handler;
+      this.name = name;
+      this.healthPoints = DEFAULT_HEALTH;
+
+      collisionBounds = new Rectangle(0,0,width,height);
+    }
 
     //Getters
 
@@ -35,8 +57,36 @@ public abstract class Entity {
         return height;
     }
 
-    public boolean isCreatureIsActive() {
-        return creatureIsActive;
+    public int getHealth() {
+        return healthPoints;
+    }
+
+    public int getCurrentHealthPoints() {
+        return currentHealthPoints;
+    }
+
+    public boolean isEntityIsActive() {
+        return entityIsActive;
+    }
+
+    public boolean isEntityHasAnimation() {
+        return entityHasAnimation;
+    }
+
+    public boolean isEntityHurtAnimation() {
+        return entityHurtAnimation;
+    }
+
+    public boolean isEntityDeathAnimation() {
+        return entityDeathAnimation;
+    }
+
+    public boolean isEntityCanBeHurt() {
+        return entityCanBeHurt;
+    }
+
+    public String getName() {
+        return name;
     }
 
     //Setters
@@ -57,16 +107,36 @@ public abstract class Entity {
         this.height = height;
     }
 
-    //Constructors
+    public void setHealth(int healthPoints) {
+        this.healthPoints = healthPoints;
+    }
 
-    public Entity(float x, float y, int width, int height, Handler handler, String name){
-      this.x = x;
-      this.y = y;
-      this.width = width;
-      this.height = height;
-      this.handler = handler;
-      this.name = name;
-      collisionBounds = new Rectangle(0,0,width,height);
+    public void setCurrentHealthPoints(int currentHealthPoints) {
+        this.currentHealthPoints = currentHealthPoints;
+    }
+
+    public void setEntityIsActive(boolean entityIsActive) {
+        this.entityIsActive = entityIsActive;
+    }
+
+    public void setEntityHasAnimation(boolean entityHasAnimation) {
+        this.entityHasAnimation = entityHasAnimation;
+    }
+
+    public void setEntityHurtAnimation(boolean entityHurtAnimation) {
+        this.entityHurtAnimation = entityHurtAnimation;
+    }
+
+    public void setEntityDeathAnimation(boolean entityDeathAnimation) {
+        this.entityDeathAnimation = entityDeathAnimation;
+    }
+
+    public void setEntityCanBeHurt(boolean entityCanBeHurt) {
+        this.entityCanBeHurt = entityCanBeHurt;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     //Methods
@@ -90,9 +160,22 @@ public abstract class Entity {
         return Objects.hash(getX(), getY(), getWidth(), getHeight(), collisionBounds, handler, name);
     }
 
-    public void hurt( int healthPoints){};
+    public void hurt(int healthPointsAmount){
+        currentHealthPoints = healthPoints;
+        if (!entityCanBeHurt) { return; }
+        currentHealthPoints -= healthPointsAmount;
+        if(currentHealthPoints <= 0 ) {
+            entityIsActive = false;
+            die();
+        } else {
+            entityHurtAnimation = true;
+        }
+        healthPoints = currentHealthPoints;
+    }
 
-    public void die(){};
+    public void die(){
+        entityDeathAnimation = true;
+    }
 
     public abstract void tick();
 
