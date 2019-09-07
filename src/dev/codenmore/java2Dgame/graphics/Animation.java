@@ -9,20 +9,30 @@ public class Animation {
     private int speed, index;
     private long lastTime, timer;
     private BufferedImage[] animationFrames;
-    private int animationFramesLenght;
+    private int animationFramesLength;
 
     //Constructors
 
     public Animation(int speed, BufferedImage[] animationFrames) {
         this.speed = speed;
         this.animationFrames = animationFrames;
-        this.animationFramesLenght = animationFrames.length;
+        this.animationFramesLength = animationFrames.length;
         index = 0;
         timer = 0;
         lastTime = System.currentTimeMillis();
     }
 
-    //Methods
+    // Getters
+
+    public int getIndex() {
+        return index;
+    }
+
+    public int getAnimationFramesLength() {
+        return animationFramesLength;
+    }
+
+//Methods
 
     public void tick(){
         timer += System.currentTimeMillis() - lastTime;

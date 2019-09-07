@@ -22,7 +22,7 @@ public class MinotaurMonster extends Creature{
 
         //Minotaur animations
         animationIdle = new Animation(250, Assets.minotaurIdle);
-        animationGotHit = new Animation(250,Assets.minotaurGotHit);
+        animationGotHit = new Animation(500,Assets.minotaurGotHit);
         animationDies = new Animation(250, Assets.minotaurDies);
     }
 
@@ -39,20 +39,24 @@ public class MinotaurMonster extends Creature{
         graphics.drawImage(getCurrentAnimationFrame(), (int)(x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //Bellow is the code for test purposes only.
-        graphics.setColor(Color.red);
-        graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
-                (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
-                collisionBounds.width, collisionBounds.height);
+//        graphics.setColor(Color.red);
+//        graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
+//                (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
+//                collisionBounds.width, collisionBounds.height);
     }
 
     private BufferedImage getCurrentAnimationFrame(){
         if(entityHurtAnimation){
-            this.setEntityHurtAnimation(false);
-            return animationGotHit.getCurrentAnimationFrame();
-        } else if (entityDeathAnimation){
-            this.setEntityDeathAnimation(false);
-            return animationDies.getCurrentAnimationFrame();
-        } else
+          if(animationGotHit.getAnimationFramesLength() - 1 == animationGotHit.getIndex()) {
+              this.setEntityHurtAnimation(false);
+              return animationIdle.getCurrentAnimationFrame();
+          }
+          return animationGotHit.getCurrentAnimationFrame();
+        }
+//        else if (entityDeathAnimation){
+//            this.setEntityDeathAnimation(false);
+//            return animationDies.getCurrentAnimationFrame();}
+        else
             return animationIdle.getCurrentAnimationFrame();
     }
 }

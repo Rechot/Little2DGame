@@ -125,6 +125,7 @@ public class Game implements Runnable{
 
     private void tick() {
         keyManager.tick();
+        //x += 1;
 
         if (State.getCurrentState() != null) { State.getCurrentState().tick();}
     }
@@ -143,9 +144,9 @@ public class Game implements Runnable{
         graphics.clearRect(0,0,width, height);
 
         // Draw here.
-        //graphics.drawImage(Assets.adventurer,64+ x,64,null); //for tests only
-        if(State.getCurrentState() != null) {State.getCurrentState().render(graphics);}
 
+        if(State.getCurrentState() != null) {State.getCurrentState().render(graphics);}
+        //graphics.drawImage(Assets.adventurer,400+ x,400,null); //for tests only
         // End drawing.
         bufferStrategy.show();
         graphics.dispose();
@@ -168,7 +169,7 @@ public class Game implements Runnable{
         fixedTimeSlicePerTick = oneSecondInNanoseconds / rate;
 
         while (isGameRunning) {
-            /*
+         /*
             now = System.nanoTime();
             timeSlice = now - lastTime;
             tick();
@@ -182,8 +183,9 @@ public class Game implements Runnable{
                 ticks = 0;
                 timer = 0;
             }
-            */
+          */
 
+//             /*
             now = System.nanoTime();
             timeSlice = now - lastTime;
             delta += timeSlice / fixedTimeSlicePerTick; // summing little differential fraction and checking whether delta >= 1 later on;
@@ -199,11 +201,11 @@ public class Game implements Runnable{
             }
 
             if(timer >= oneSecondInNanoseconds){
-                //System.out.println("Ticks and frames: " + ticks);
+                System.out.println("Ticks and frames: " + ticks);
                 ticks = 0;
                 timer = 0;
             }
-
+//             */
         }
         stop();
     }

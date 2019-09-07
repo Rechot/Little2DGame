@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Utilities {
 
 
-
-    public static String loadFileToString(String path) {
+    public static java.lang.String loadFileToString(String path) {
 
         String output = null;
         StringBuilder builder = new StringBuilder();
@@ -43,10 +43,10 @@ public class Utilities {
 
     }
 
-    public static int parseInt(String number){
+    public static int parseInt(String number) {
         try {
             return Integer.parseInt(number);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             return 0;
         }

@@ -85,6 +85,8 @@ public class Assets {
         menuButtonStart[0] = menuStartButtonSpriteSheet.crop(0,0,275, 98);
         menuButtonStart[1] = menuStartButtonSpriteSheet.crop(328,0,275, 98);
 
+        //Cropping images (1 frame) objects
+
         adventurer = adventurerSheet.crop(0,0,width,height);
 
         groundTile = tileSheet.crop(0,0,width,height);
