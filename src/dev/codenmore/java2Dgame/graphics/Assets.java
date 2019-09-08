@@ -16,6 +16,7 @@ public class Assets {
     public static BufferedImage[] adventurerIdle, adventurerWalk, adventurerMeleeAttack, adventurerJump, adventurerGotHit, adventurerKO;
     public static BufferedImage[] minotaurIdle,  minotaurWalk,  minotaurSlowWalk,  minotaurAxeSlash,  minotaurAxeThrust,  minotaurGuarding,
                                     minotaurRotarySlash,  minotaurLowHealth,  minotaurGotHit,  minotaurDies;
+    public static BufferedImage[] goldCoinItem, silverCoinItem, redCoinItem;
     public static BufferedImage[] menuButtonStart;
 
     private static final int width = 32, height = 32;
@@ -28,9 +29,14 @@ public class Assets {
 
         SpriteSheet adventurerSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Adventurer Sprite Sheet v1.1.png"));
         SpriteSheet minotaurMonsterSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Minotaur - Sprite Sheet.png"));
+        SpriteSheet goldCoinSheet, silverCoinSheet, redCoinSheet;
+        goldCoinSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/CoinGems/MonedaD.png"));
+        silverCoinSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/CoinGems/MonedaP.png"));
+        redCoinSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/CoinGems/MonedaR.png"));
         SpriteSheet tileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Tileset.png"));
         SpriteSheet treesAndGrassTileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/TreesAndGrassTiles.png"));
         SpriteSheet menuStartButtonSpriteSheet = new SpriteSheet((ImageLoader.LoadImage("/textures/MenuStartButtonSpriteSheet.png")));
+
 
         //Initializing adventurer animation sprites
 
@@ -53,6 +59,12 @@ public class Assets {
         minotaurLowHealth = new BufferedImage[3];
         minotaurGotHit = new BufferedImage[3];
         minotaurDies = new BufferedImage[6];
+
+        //Initializing drop items animation sprites
+
+        goldCoinItem = new BufferedImage[5];
+        silverCoinItem = new BufferedImage[5];
+        redCoinItem = new BufferedImage[5];
 
         //Initializing Menu animation sprites
 
@@ -79,6 +91,12 @@ public class Assets {
         minotaurLowHealth = minotaurMonsterSheet.cropInALoopFromSpriteSheet(0,672,96,96,3,minotaurMonsterSheet,minotaurLowHealth);
         minotaurGotHit = minotaurMonsterSheet.cropInALoopFromSpriteSheet(0,768,96,96,3,minotaurMonsterSheet,minotaurGotHit);
         minotaurDies = minotaurMonsterSheet.cropInALoopFromSpriteSheet(0,864,96,96,6,minotaurMonsterSheet,minotaurDies);
+
+        //Cropping items sprites from sprite sheet;
+
+        goldCoinItem = goldCoinSheet.cropInALoopFromSpriteSheet(0,0,16,16,5,goldCoinSheet,goldCoinItem);
+        silverCoinItem = silverCoinSheet.cropInALoopFromSpriteSheet(0,0,16,16,5,silverCoinSheet,silverCoinItem);
+        redCoinItem = redCoinSheet.cropInALoopFromSpriteSheet(0,0,16,16,5,redCoinSheet,redCoinItem);
 
         //Cropping everything for our Menu from sprite sheet;
 

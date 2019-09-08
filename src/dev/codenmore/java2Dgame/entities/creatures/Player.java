@@ -16,8 +16,11 @@ public class Player extends Creature{
     private Animation animationWalk;
     private Animation animationMeleeAttack;
         //Attack timer, time in which single attack is performed
-    private long lastAttackTimer, attackCooldown = 750, attackTimer = attackCooldown;
+    private long lastAttackTimer, attackCooldown = 1500, attackTimer = attackCooldown;
     private Rectangle attackRectangleArea;
+
+    //Debug
+    private boolean isDebugOn = false;
 
     //Constructors
 
@@ -73,15 +76,18 @@ public class Player extends Creature{
         graphics.drawImage(getCurrentAnimationFrame(), (int)(x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //Bellow is the code for test purposes only.
-        graphics.setColor(Color.blue);
-        graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
-                (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
-               collisionBounds.width, collisionBounds.height);
-        if(handler.getKeyManager().attackDown || handler.getKeyManager().attackUp || handler.getKeyManager().attackRight || handler.getKeyManager().attackLeft) {
-            graphics.setColor(Color.green);
-            graphics.fillRect((int) (attackRectangleArea.x - handler.getGameCamera().getxOffset()),
-                    (int) (attackRectangleArea.y - handler.getGameCamera().getyOffset()),
-                    attackRectangleArea.width, attackRectangleArea.height);
+//        isDebugOn = true;
+        if(isDebugOn){
+            graphics.setColor(Color.blue);
+            graphics.fillRect((int) (x + collisionBounds.x - handler.getGameCamera().getxOffset()),
+                    (int) (y + collisionBounds.y - handler.getGameCamera().getyOffset()),
+                    collisionBounds.width, collisionBounds.height);
+            if(handler.getKeyManager().attackDown || handler.getKeyManager().attackUp || handler.getKeyManager().attackRight || handler.getKeyManager().attackLeft) {
+                graphics.setColor(Color.green);
+                graphics.fillRect((int) (attackRectangleArea.x - handler.getGameCamera().getxOffset()),
+                        (int) (attackRectangleArea.y - handler.getGameCamera().getyOffset()),
+                        attackRectangleArea.width, attackRectangleArea.height);
+            }
         }
     }
 
