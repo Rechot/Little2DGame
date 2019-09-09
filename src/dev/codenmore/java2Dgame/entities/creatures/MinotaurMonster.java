@@ -55,7 +55,7 @@ public class MinotaurMonster extends Creature{
     public void die() {
         super.die();
 //        handler.getLevel().getItemManager().addItem(Item.goldCoin.createNewOneFrameItem((int) (x + 32),(int) (y + 32)));
-        handler.getLevel().getItemManager().addItem(CoinItem.goldCoinItem.createNewItem((int) (x+32), (int) (y+32)));
+        handler.getLevel().getItemManager().addItem(CoinItem.silverCoinItem.createNewItem((int) (x+64), (int) (y+32)));
     }
 
     private BufferedImage getCurrentAnimationFrame(){

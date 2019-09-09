@@ -33,6 +33,7 @@ public class Item {
     protected String name;
 
     protected Animation animationIdle;
+    protected Rectangle collisionBouns;
 
     //Constructors
         // For animated items, 2 frames and more.
@@ -42,6 +43,8 @@ public class Item {
         this.id =id;
         count = 1;
 
+        collisionBouns = new Rectangle(x, y, ITEM_WIDTH, ITEM_HEIGHT);
+
         items[id] = this;
     }
         // For "1 frame" items.
@@ -50,6 +53,8 @@ public class Item {
         this.name = name;
         this.id =id;
         count = 1;
+
+        collisionBouns = new Rectangle(x, y, ITEM_WIDTH, ITEM_HEIGHT);
 
         items[id] = this;
     }
@@ -112,7 +117,11 @@ public class Item {
 
     //Methods
 
-    public void tick(){}
+    public void tick(){
+        if (handler.getLevel().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(collisionBouns)) {
+            count = PICKED_UP;
+        }
+    }
 
     public void render(Graphics graphics){
         if(handler == null) {return;}
@@ -126,6 +135,8 @@ public class Item {
     public void setItemPosition(int x, int y){
         this.x = x;
         this.y =y;
+        this.collisionBouns.x = x;
+        this.collisionBouns.y = y;
     }
 
     // Item spawners, constructor wrapper

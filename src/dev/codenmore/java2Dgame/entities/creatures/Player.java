@@ -52,7 +52,6 @@ public class Player extends Creature{
 
     //Methods
 
-
     @Override
     public void die(){
         super.die();
@@ -129,7 +128,7 @@ public class Player extends Creature{
         if(attackTimer <  attackCooldown) {return;}
 
         attackRectangleArea = new Rectangle();
-        int attackRectangleAreaSize = 40; //pixels, basically the reach of an attack in pixels,
+        int attackRectangleAreaSize = 50; //pixels, basically the reach of an attack in pixels,
         // our attackArea will be a square width = height = attackRectangleAreaSize;
         // that square will be positioned in a way, that one of its edges will adjoin the edge of a player's collision boundaries.
         attackRectangleArea.width = attackRectangleAreaSize;

@@ -10,7 +10,7 @@ public class CoinItem extends Item {
 
     public static Item goldCoinItem = new CoinItem(Assets.goldCoinItem, "Gold Coin Animated", 0) ;
     public static Item silverCoinItem = new CoinItem(Assets.silverCoinItem, "Silver Coin Animated", 1) ;
-    public static Item redCoinItem = new CoinItem(Assets.redCoinItem, "Silver Coin Animated", 2) ;
+    public static Item redCoinItem = new CoinItem(Assets.redCoinItem, "Red Coin Animated", 2) ;
 
     public CoinItem(BufferedImage[] itemTextures, String name, int id) {
         super(itemTextures, name, id);
@@ -19,6 +19,7 @@ public class CoinItem extends Item {
 
     @Override
     public void tick() {
+        super.tick();
         animationIdle.tick();
     }
 
