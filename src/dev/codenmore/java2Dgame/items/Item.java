@@ -17,9 +17,7 @@ public class Item {
 
     public static Item[] items = new Item[256];
 
-    public static Item silverCoinItem = new Item(Assets.goldCoinItem, "Silver Coin Animated", 1) ;
-    public static Item redCoinItem = new Item(Assets.goldCoinItem, "Silver Coin Animated", 2) ;
-    public static Item goldCoin = new Item(Assets.goldCoin, "Gold Coin", 0) ;
+    public static Item goldCoin = new Item(Assets.goldCoin, "Gold Coin", 4) ;
 
     public static final int ITEM_WIDTH = 64, ITEM_HEIGHT = 64, PICKED_UP = -1;
 
@@ -130,7 +128,7 @@ public class Item {
         this.y =y;
     }
 
-    // Item spawner, constructor wrapper
+    // Item spawners, constructor wrapper
     public Item createNewOneFrameItem(int x, int y){
         Item item = new Item(itemTexture, name, id);
         item.setItemPosition(x,y);

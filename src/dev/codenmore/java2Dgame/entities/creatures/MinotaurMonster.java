@@ -3,7 +3,7 @@ package dev.codenmore.java2Dgame.entities.creatures;
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.graphics.Animation;
 import dev.codenmore.java2Dgame.graphics.Assets;
-import dev.codenmore.java2Dgame.items.GoldCoinItem;
+import dev.codenmore.java2Dgame.items.CoinItem;
 import dev.codenmore.java2Dgame.items.Item;
 
 import java.awt.*;
@@ -54,8 +54,8 @@ public class MinotaurMonster extends Creature{
     @Override
     public void die() {
         super.die();
-        handler.getLevel().getItemManager().addItem(Item.goldCoin.createNewOneFrameItem((int) (x + 32),(int) (y + 32)));
-//        handler.getLevel().getItemManager().addItem(GoldCoinItem.goldCoinItem.createNewItem((int) (x + 32),(int) (y + 32)));
+//        handler.getLevel().getItemManager().addItem(Item.goldCoin.createNewOneFrameItem((int) (x + 32),(int) (y + 32)));
+        handler.getLevel().getItemManager().addItem(CoinItem.goldCoinItem.createNewItem((int) (x+32), (int) (y+32)));
     }
 
     private BufferedImage getCurrentAnimationFrame(){
