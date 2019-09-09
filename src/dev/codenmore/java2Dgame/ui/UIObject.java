@@ -82,6 +82,6 @@ public abstract class UIObject {
     }
 
     public void onMouseRelease(MouseEvent e){
-        if(hovering){onClick();}
+        if(hovering && (e.getButton()!= MouseEvent.BUTTON3)){onClick();} //Hack-fix;
     }
 }

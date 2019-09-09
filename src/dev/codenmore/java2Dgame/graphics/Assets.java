@@ -10,7 +10,7 @@ public class Assets {
 
     // One frame assets.
     public static BufferedImage adventurer, groundTile, darkGroundTile, stoneTile, darkStoneTile, gothicWindow,
-                                simpleTree;
+                                simpleTree, goldCoin, silverCoin, redCoin;
 
     // many frames = animation assets.
     public static BufferedImage[] adventurerIdle, adventurerWalk, adventurerMeleeAttack, adventurerJump, adventurerGotHit, adventurerKO;
@@ -114,5 +114,8 @@ public class Assets {
         gothicWindow = tileSheet.crop(8*width,8*height,width,height);
 
         simpleTree = treesAndGrassTileSheet.crop(258,126,90,130);
+        goldCoin = goldCoinSheet.crop(0,0,16,16);
+        silverCoin = goldCoinSheet.crop(0,0,16,16);
+        redCoin = goldCoinSheet.crop(0,0,16,16);
     }
 }

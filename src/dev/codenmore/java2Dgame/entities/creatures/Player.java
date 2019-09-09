@@ -28,8 +28,13 @@ public class Player extends Creature{
         super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, health, speed, handler, name);
         collisionBounds.x = 40;
         collisionBounds.y = 64;
-        collisionBounds.width = 36;
-        collisionBounds.height = 52;
+        collisionBounds.width = 32;
+        collisionBounds.height = 60;
+
+        //Player animations
+        animationIdle = new Animation(250, Assets.adventurerIdle);
+        animationWalk = new Animation(250, Assets.adventurerWalk);
+        animationMeleeAttack = new Animation(250, Assets.adventurerMeleeAttack);
     }
 
     public Player(float x, float y, int health, Handler handler, String name) {
@@ -37,7 +42,7 @@ public class Player extends Creature{
         collisionBounds.x = 40;
         collisionBounds.y = 64;
         collisionBounds.width = 32;
-        collisionBounds.height = 52;
+        collisionBounds.height = 60;
 
         //Player animations
         animationIdle = new Animation(250, Assets.adventurerIdle);
@@ -50,7 +55,7 @@ public class Player extends Creature{
 
     @Override
     public void die(){
-
+        super.die();
     }
 
     @Override // Updating any variables for our object.

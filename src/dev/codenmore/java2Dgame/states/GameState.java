@@ -28,8 +28,9 @@ public class GameState extends State{
     @Override
     public void tick() {
         currentLevel.tick();
-        if(handler.getMouseManager().isRightMouseButtonPressed()&& handler.getMouseManager().isLeftMouseButtonPressed())
-        {State.setCurrentState(handler.getGame().menuState);}
+            if ( handler.getMouseManager().isRightMouseButtonPressed()) {
+                State.setCurrentState(handler.getGame().menuState);
+        }
         //game.getGameCamera().move(1,1); //Test purposes
         // handler.getMouseManager().setUiManager(handler.getGame().menuState.getUiManager);
         // The above does not work, getUIManager is not visible, don't know why though ...

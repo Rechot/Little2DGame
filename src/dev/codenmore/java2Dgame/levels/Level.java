@@ -6,6 +6,7 @@ import dev.codenmore.java2Dgame.entities.creatures.Creature;
 import dev.codenmore.java2Dgame.entities.creatures.MinotaurMonster;
 import dev.codenmore.java2Dgame.entities.creatures.Player;
 import dev.codenmore.java2Dgame.entities.immobiles.Tree;
+import dev.codenmore.java2Dgame.items.ItemManager;
 import dev.codenmore.java2Dgame.tile.Tile;
 import dev.codenmore.java2Dgame.utilities.Utilities;
 
@@ -23,6 +24,7 @@ public class Level {
     private String[] tokens;
 
     private EntityManager entityManager;
+    private ItemManager itemManager;
 
     //Constructors
 
@@ -36,6 +38,7 @@ public class Level {
         entityManager = new EntityManager(handler,
                 new Player(this.playerPositionX * Creature.DEFAULT_CREATURE_WIDTH,
                 this.playerPositionY * Creature.DEFAULT_CREATURE_HEIGHT, 100, handler,"ED"));
+        itemManager = new ItemManager(handler);
 
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 2, handler));
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT * 4, handler));
@@ -70,6 +73,24 @@ public class Level {
         return entityManager;
     }
 
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public ItemManager getItemManager() {
+        return itemManager;
+    }
+
+    //Setters
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
+
+    public void setItemManager(ItemManager itemManager) {
+        this.itemManager = itemManager;
+    }
+
     //Methods
 
     public Tile getTile(int x, int y){
@@ -83,6 +104,7 @@ public class Level {
     }
 
     public void tick(){
+        itemManager.tick();
         entityManager.tick();
     }
 
@@ -107,8 +129,10 @@ public class Level {
             }
         }
 
-        //After rendering tiles we render entities.
+        //After rendering tiles we render items
+        itemManager.render(graphics);
 
+        //After rendering items we render entities.
         entityManager.render(graphics);
 
     }
