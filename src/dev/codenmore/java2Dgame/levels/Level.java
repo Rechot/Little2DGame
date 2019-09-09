@@ -43,7 +43,8 @@ public class Level {
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 2, handler));
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT * 4, handler));
         entityManager.addEntity(new Tree(Tile.TILE_WIDTH * 1, Tile.TILE_HEIGHT * 5, handler));
-        entityManager.addEntity(new MinotaurMonster(Tile.TILE_WIDTH * 7,Tile.TILE_HEIGHT * 5, 4, handler,"Minotaur"));
+        entityManager.addEntity(new MinotaurMonster(Tile.TILE_WIDTH * 7,Tile.TILE_HEIGHT * 5, 4, handler,"Minotaur1"));
+        entityManager.addEntity(new MinotaurMonster(Tile.TILE_WIDTH * 9,Tile.TILE_HEIGHT * 6, 4, handler,"Minotaur2"));
 
         loadLevelContentsByID(this.tokens);
 

@@ -27,7 +27,7 @@ public class KeyManager implements KeyListener {
         }
 
         //Below is test code.
-//        if(justPressed[KeyEvent.VK_E]){ System.out.println("Key E just has been pressed");}
+        if(keyJustPressed(KeyEvent.VK_E)){ System.out.println("Key E just has been pressed");}
 
         up = keys[KeyEvent.VK_UP];
         down = keys[KeyEvent.VK_DOWN];
@@ -43,6 +43,11 @@ public class KeyManager implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
+    }
+
+    public boolean keyJustPressed(int keyCode){
+        if(keyCode < 0 || keyCode >= keys.length) {return false;}
+        return justPressed[keyCode];
     }
 
     @Override //Method called whenever user press key on keyboard.

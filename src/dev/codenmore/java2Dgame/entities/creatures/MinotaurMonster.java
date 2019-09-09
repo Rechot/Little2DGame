@@ -25,7 +25,7 @@ public class MinotaurMonster extends Creature{
 
         //Minotaur animations
         animationIdle = new Animation(250, Assets.minotaurIdle);
-        animationGotHit = new Animation(500,Assets.minotaurGotHit);
+        animationGotHit = new Animation(400,Assets.minotaurGotHit);
         animationDies = new Animation(250, Assets.minotaurDies);
     }
 

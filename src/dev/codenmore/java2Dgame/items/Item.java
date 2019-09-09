@@ -19,14 +19,15 @@ public class Item {
 
     public static Item goldCoin = new Item(Assets.goldCoin, "Gold Coin", 4) ;
 
-    public static final int ITEM_WIDTH = 64, ITEM_HEIGHT = 64, PICKED_UP = -1;
+    public static final int ITEM_WIDTH = 64, ITEM_HEIGHT = 64;
 
     protected final int id;
     protected int x,y, count;
+    protected boolean pickedUp = false;
     // count the amount of the object item represented by the given class;
     // one instance of an item, if we happen to have in the game inventory 3 such items we just change count value to 3
     // in the given instance;
-    // if the count = -1 = PICKED_UP , we will remove item from the level world and add it to our player's inventory;
+
     protected Handler handler;
     protected BufferedImage itemTexture;
     protected BufferedImage[] itemTextures;
@@ -89,6 +90,10 @@ public class Item {
         return name;
     }
 
+    public boolean isPickedUp() {
+        return pickedUp;
+    }
+
     //Setters
 
     public void setX(int x) {
@@ -115,11 +120,17 @@ public class Item {
         this.name = name;
     }
 
+    public void setPickedUp(boolean pickedUp) {
+        this.pickedUp = pickedUp;
+    }
+
     //Methods
 
     public void tick(){
         if (handler.getLevel().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(collisionBouns)) {
-            count = PICKED_UP;
+            pickedUp = true;
+            //Adding item to the inventory.
+            handler.getLevel().getEntityManager().getPlayer().getInventory().addItem(this);
         }
     }
 

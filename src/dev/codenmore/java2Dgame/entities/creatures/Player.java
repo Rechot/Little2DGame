@@ -4,6 +4,7 @@ import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.entities.Entity;
 import dev.codenmore.java2Dgame.graphics.Animation;
 import dev.codenmore.java2Dgame.graphics.Assets;
+import dev.codenmore.java2Dgame.inventory.Inventory;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,10 +17,11 @@ public class Player extends Creature{
     private Animation animationWalk;
     private Animation animationMeleeAttack;
         //Attack timer, time in which single attack is performed
-    private long lastAttackTimer, attackCooldown = 1500, attackTimer = attackCooldown;
+    private long lastAttackTimer, attackCooldown = 2500, attackTimer = attackCooldown;
     private Rectangle attackRectangleArea;
-
-    //Debug
+        //Inventory
+    private Inventory inventory;
+        //Debug
     private boolean isDebugOn = false;
 
     //Constructors
@@ -35,6 +37,8 @@ public class Player extends Creature{
         animationIdle = new Animation(250, Assets.adventurerIdle);
         animationWalk = new Animation(250, Assets.adventurerWalk);
         animationMeleeAttack = new Animation(250, Assets.adventurerMeleeAttack);
+        //Inventory
+        inventory = new Inventory(this.handler);
     }
 
     public Player(float x, float y, int health, Handler handler, String name) {
@@ -48,6 +52,20 @@ public class Player extends Creature{
         animationIdle = new Animation(250, Assets.adventurerIdle);
         animationWalk = new Animation(250, Assets.adventurerWalk);
         animationMeleeAttack = new Animation(250, Assets.adventurerMeleeAttack);
+        //Inventory
+        inventory = new Inventory(this.handler);
+    }
+
+    //Getters
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    //Setters
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     //Methods
@@ -72,6 +90,9 @@ public class Player extends Creature{
 
         //Attack
         checkMeleeAttack();
+
+        //Inventory
+        inventory.tick();
     }
 
     @Override
@@ -79,6 +100,7 @@ public class Player extends Creature{
         //System.out.println("x : "+x+", y: "+y);
         graphics.drawImage(getCurrentAnimationFrame(), (int)(x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        inventory.render(graphics);
         //Bellow is the code for test purposes only.
 //        isDebugOn = true;
         if(isDebugOn){

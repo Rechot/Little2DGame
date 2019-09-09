@@ -36,7 +36,7 @@ public class ItemManager {
         while(iterator.hasNext()){
             Item item = iterator.next();
             item.tick();
-            if(item.getCount() == Item.PICKED_UP){ iterator.remove();}
+            if(item.isPickedUp()){ iterator.remove();}
         }
     }
 
