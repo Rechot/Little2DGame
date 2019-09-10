@@ -100,7 +100,7 @@ public class Player extends Creature{
         //System.out.println("x : "+x+", y: "+y);
         graphics.drawImage(getCurrentAnimationFrame(), (int)(x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-        inventory.render(graphics);
+
         //Bellow is the code for test purposes only.
 //        isDebugOn = true;
         if(isDebugOn){
@@ -115,6 +115,11 @@ public class Player extends Creature{
                         attackRectangleArea.width, attackRectangleArea.height);
             }
         }
+    }
+
+    //When we will call this method everything else will be drawn already.
+    public void postRender(Graphics graphics){
+        inventory.render(graphics);
     }
 
     @Override
@@ -133,6 +138,12 @@ public class Player extends Creature{
     }
 
     private void getInput(){
+        if(inventory.isActive()){
+            xMove = 0;
+            yMove = 0;
+            return;
+        }
+
         xMove = 0;
         yMove = 0;
 
@@ -144,10 +155,13 @@ public class Player extends Creature{
 
     //Here we will be checking whether player uses the meleeAttack key and generate the attack and appropriate animation.
     private void checkMeleeAttack(){
+
         // Setting attack time pace
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         lastAttackTimer = System.currentTimeMillis();
         if(attackTimer <  attackCooldown) {return;}
+
+        if(inventory.isActive()){return;}
 
         attackRectangleArea = new Rectangle();
         int attackRectangleAreaSize = 50; //pixels, basically the reach of an attack in pixels,

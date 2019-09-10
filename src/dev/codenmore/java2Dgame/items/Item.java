@@ -163,4 +163,20 @@ public class Item {
         item.setItemPosition(x,y);
         return item;
     }
+
+    //Below method is for testing purposes only
+    public Item createNewOneFrameItem(int count){
+        Item item = new Item(itemTexture, name, id);
+        item.setPickedUp(true);
+        item.setCount(count);
+        return item;
+    }
+
+    //Below method is for testing purposes only
+    public Item createNewItem(int count){
+        Item item = new Item(itemTextures, name, id);
+        item.setPickedUp(true);
+        item.setCount(count);
+        return item;
+    }
 }

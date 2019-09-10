@@ -1,5 +1,6 @@
 package dev.codenmore.java2Dgame.graphics;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
@@ -10,7 +11,7 @@ public class Assets {
 
     // One frame assets.
     public static BufferedImage adventurer, groundTile, darkGroundTile, stoneTile, darkStoneTile, gothicWindow,
-                                simpleTree, woodLogs, goldCoin, silverCoin, redCoin;
+                                simpleTree, woodLogs, goldCoin, silverCoin, redCoin, inventoryScreen;
 
     // many frames = animation assets.
     public static BufferedImage[] adventurerIdle, adventurerWalk, adventurerMeleeAttack, adventurerJump, adventurerGotHit, adventurerKO;
@@ -19,12 +20,18 @@ public class Assets {
     public static BufferedImage[] goldCoinItem, silverCoinItem, redCoinItem;
     public static BufferedImage[] menuButtonStart;
 
+    public static Font font28, font48;
+
     private static final int width = 32, height = 32;
 
     //Constructors
 
     //The class contains one method init(), it's gonna load everything for our game and it's gonna be called once.
     public static void initAssets(){
+        // Initializing font images
+        font28 = FontLoader.loadFont("resources/fonts/slkscr.ttf", 28);
+        font48 = FontLoader.loadFont("resources/fonts/slkscr.ttf", 48);
+
         // Initializing sprite sheets images
 
         SpriteSheet adventurerSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Adventurer Sprite Sheet v1.1.png"));
@@ -108,6 +115,7 @@ public class Assets {
 
         //Cropping images (1 frame) objects
 
+        //level
         adventurer = adventurerSheet.crop(0,0,width,height);
 
         groundTile = tileSheet.crop(0,0,width,height);
@@ -122,5 +130,9 @@ public class Assets {
         goldCoin = goldCoinSheet.crop(0,0,16,16);
         silverCoin = goldCoinSheet.crop(0,0,16,16);
         redCoin = goldCoinSheet.crop(0,0,16,16);
+
+        //inventoryMenu
+
+        inventoryScreen = ImageLoader.LoadImage("/textures/inventoryScreen.png");
     }
 }
