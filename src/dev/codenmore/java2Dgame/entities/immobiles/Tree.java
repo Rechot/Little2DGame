@@ -2,6 +2,7 @@ package dev.codenmore.java2Dgame.entities.immobiles;
 
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.graphics.Assets;
+import dev.codenmore.java2Dgame.items.Item;
 import dev.codenmore.java2Dgame.tile.Tile;
 
 import java.awt.*;
@@ -22,6 +23,12 @@ public class Tree extends ImmobileEntity{
     @Override
     public void tick() {
 
+    }
+
+    @Override
+    public void die() {
+        super.die();
+        handler.getLevel().getItemManager().addItem(Item.woodLogs.createNewOneFrameItem((int) (x + 32), (int) (y + 64)));
     }
 
     @Override

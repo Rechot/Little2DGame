@@ -10,7 +10,7 @@ public class Assets {
 
     // One frame assets.
     public static BufferedImage adventurer, groundTile, darkGroundTile, stoneTile, darkStoneTile, gothicWindow,
-                                simpleTree, goldCoin, silverCoin, redCoin;
+                                simpleTree, woodLogs, goldCoin, silverCoin, redCoin;
 
     // many frames = animation assets.
     public static BufferedImage[] adventurerIdle, adventurerWalk, adventurerMeleeAttack, adventurerJump, adventurerGotHit, adventurerKO;
@@ -29,14 +29,17 @@ public class Assets {
 
         SpriteSheet adventurerSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Adventurer Sprite Sheet v1.1.png"));
         SpriteSheet minotaurMonsterSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Minotaur - Sprite Sheet.png"));
+
         SpriteSheet goldCoinSheet, silverCoinSheet, redCoinSheet;
         goldCoinSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/CoinGems/MonedaD.png"));
         silverCoinSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/CoinGems/MonedaP.png"));
         redCoinSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/CoinGems/MonedaR.png"));
-        SpriteSheet tileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Tileset.png"));
-        SpriteSheet treesAndGrassTileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/TreesAndGrassTiles.png"));
-        SpriteSheet menuStartButtonSpriteSheet = new SpriteSheet((ImageLoader.LoadImage("/textures/MenuStartButtonSpriteSheet.png")));
 
+        SpriteSheet tileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/Tileset.png"));
+
+        SpriteSheet treesAndGrassTileSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/TreesAndGrassTiles.png"));
+        SpriteSheet woodStuffSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/TileB.png"));
+        SpriteSheet menuStartButtonSpriteSheet = new SpriteSheet((ImageLoader.LoadImage("/textures/MenuStartButtonSpriteSheet.png")));
 
         //Initializing adventurer animation sprites
 
@@ -114,6 +117,8 @@ public class Assets {
         gothicWindow = tileSheet.crop(8*width,8*height,width,height);
 
         simpleTree = treesAndGrassTileSheet.crop(258,126,90,130);
+        woodLogs = woodStuffSheet.crop(98,187,60,40);
+
         goldCoin = goldCoinSheet.crop(0,0,16,16);
         silverCoin = goldCoinSheet.crop(0,0,16,16);
         redCoin = goldCoinSheet.crop(0,0,16,16);

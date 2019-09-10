@@ -18,6 +18,7 @@ public class Item {
     public static Item[] items = new Item[256];
 
     public static Item goldCoin = new Item(Assets.goldCoin, "Gold Coin", 4) ;
+    public static Item woodLogs = new Item(Assets.woodLogs, "Wood Logs", 5);
 
     public static final int ITEM_WIDTH = 64, ITEM_HEIGHT = 64;
 
