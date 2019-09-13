@@ -6,13 +6,13 @@ import dev.codenmore.java2Dgame.graphics.Assets;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class CoinItem extends Item {
+public class AnimatedItem extends Item {
 
-    public static Item goldCoinItem = new CoinItem(Assets.goldCoinItem, "Gold Coin", 0) ;
-    public static Item silverCoinItem = new CoinItem(Assets.silverCoinItem, "Silver Coin", 1) ;
-    public static Item redCoinItem = new CoinItem(Assets.redCoinItem, "Red Coin", 2) ;
+    public static Item goldCoinItem = new AnimatedItem(Assets.goldCoinItem, "Gold Coin", 0) ;
+    public static Item silverCoinItem = new AnimatedItem(Assets.silverCoinItem, "Silver Coin", 1) ;
+    public static Item redCoinItem = new AnimatedItem(Assets.redCoinItem, "Red Coin", 2) ;
 
-    public CoinItem(BufferedImage[] itemTextures, String name, int id) {
+    public AnimatedItem(BufferedImage[] itemTextures, String name, int id) {
         super(itemTextures, name, id);
         animationIdle = new Animation(250, itemTextures);
     }
@@ -30,9 +30,9 @@ public class CoinItem extends Item {
 
     @Override
     public Item createNewItem(int x, int y) {
-        CoinItem coinItem = new CoinItem(itemTextures, name, id);
-        coinItem.setItemPosition(x,y);
-        return coinItem;
+        AnimatedItem animatedItem = new AnimatedItem(itemTextures, name, id);
+        animatedItem.setItemPosition(x,y);
+        return animatedItem;
     }
 
     private BufferedImage GetCurrentAnimationFrame(){

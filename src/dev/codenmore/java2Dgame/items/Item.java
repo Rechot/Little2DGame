@@ -84,7 +84,9 @@ public class Item {
     }
 
     public BufferedImage getItemTexture() {
-        return itemTexture;
+        if((this instanceof Item) && !(this instanceof AnimatedItem)) {return itemTexture;}
+        if((this instanceof Item) && (this instanceof AnimatedItem)) {return itemTextures[0];}
+        return null;
     }
 
     public String getName() {

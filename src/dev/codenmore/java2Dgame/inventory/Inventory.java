@@ -3,7 +3,6 @@ package dev.codenmore.java2Dgame.inventory;
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.graphics.Assets;
 import dev.codenmore.java2Dgame.graphics.Text;
-import dev.codenmore.java2Dgame.items.CoinItem;
 import dev.codenmore.java2Dgame.items.Item;
 
 import java.awt.*;
@@ -40,16 +39,9 @@ public class Inventory {
         inventoryItems = new ArrayList<Item>();
 
         //Testing purposes only
-        addItem(Item.woodLogs.createNewOneFrameItem(3));
-        addItem(CoinItem.redCoinItem.createNewItem(5));
-        addItem(Item.woodLogs.createNewOneFrameItem(3));
-        addItem(CoinItem.redCoinItem.createNewItem(5));
-        addItem(Item.woodLogs.createNewOneFrameItem(3));
-        addItem(CoinItem.redCoinItem.createNewItem(5));
-        addItem(Item.woodLogs.createNewOneFrameItem(3));
-        addItem(CoinItem.redCoinItem.createNewItem(5));
-        addItem(Item.woodLogs.createNewOneFrameItem(3));
-        addItem(CoinItem.redCoinItem.createNewItem(5));
+//        addItem(Item.woodLogs.createNewOneFrameItem(3));
+//        addItem(AnimatedItem.redCoinItem.createNewItem(5));
+
 
         this.inventoryWidth = 512;
         this.inventoryHeight = 384;
@@ -129,12 +121,12 @@ public class Inventory {
         //Inventory methods
 
     public void addItem(Item item){
-//        for(Item i : inventoryItems){
-//            if(i.getId() == item.getId()){
-//                i.setCount(i.getCount() + item.getCount());
-//                return;
-//            }e
-//        }
+        for(Item i : inventoryItems){
+            if(i.getId() == item.getId()){
+                i.setCount(i.getCount() + item.getCount());
+                return;
+            }
+        }
        inventoryItems.add(item);
     }
 
