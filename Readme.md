@@ -56,4 +56,5 @@ You have to install Java Runtime Environment and Java Develpment Kit.
 
 ## Trello project board
 
-Link to Trello project board : [Trello board](https://trello.com/b/sX3Kb6dl/little-java-game-development) 
+- Link to Trello project features board : [Trello project features](https://trello.com/b/sX3Kb6dl/little-java-game-development)
+- Link to Trello bugs and fixes board : [Trello bugs and fixes](https://trello.com/b/11dnnJxm/sugestions-bugs)
