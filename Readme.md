@@ -6,6 +6,7 @@
 
 - [**Java stuff**](#Installing-Java-stuff)
 - [**IntelliJ**](#IntelliJ)
+- [**Trello project board**](#Trello-project-board)
 
 ---
 
@@ -52,3 +53,7 @@ You have to install Java Runtime Environment and Java Develpment Kit.
 
 9. You are ready to **Run** : shift + F10.
 ---
+
+## Trello project board
+
+Link to Trello project board : [Trello board](https://trello.com/b/sX3Kb6dl/little-java-game-development) 
