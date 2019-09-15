@@ -3,7 +3,6 @@ package dev.codenmore.java2Dgame.graphics;
 import dev.codenmore.java2Dgame.Handler;
 import dev.codenmore.java2Dgame.entities.Entity;
 import dev.codenmore.java2Dgame.tile.Tile;
-import org.jetbrains.annotations.NotNull;
 
 public class GameCamera {
 
@@ -15,7 +14,7 @@ public class GameCamera {
 
     //Constructors
 
-    public GameCamera(float xOffset, float yOffset, @NotNull Handler handler) {
+    public GameCamera(float xOffset, float yOffset, Handler handler) {
         this.xOffset = xOffset;
         this.yOffset = yOffset;
         this.handler = handler;
