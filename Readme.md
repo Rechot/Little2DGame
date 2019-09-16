@@ -34,7 +34,7 @@ You have to install Java Runtime Environment and Java Develpment Kit.
     - Project compiler output "C:\path_to_project_folder\out"
 
 4. Under **Project Settings** section go to **Modules** and make changes as follows:
-    - On the right side of the window hit the **Sources** bookmark
+- On the right side of the window hit the **Sources** bookmark
     - Mark "*src*" folder as **Sources Folders**,
     - Mark "*resources*" folder as **Resources Folders**
 
