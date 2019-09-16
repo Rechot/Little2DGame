@@ -12,7 +12,7 @@
 
 ## Java stuff
 
-You have to install Java Runtime Environment and Java Develpment Kit.
+You have to install Java Runtime Environment and Java Development Kit.
 
 
 1. [JRE 1.8](https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
