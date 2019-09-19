@@ -24,6 +24,7 @@ public class Game implements Runnable{
     public String title;
     private int width, height, x;
     private boolean isGameRunning = false;
+    private boolean isFrameRateDependencyOn = false;
 
     private Display display;
     private Thread thread;
@@ -37,7 +38,7 @@ public class Game implements Runnable{
     private long lastTime, now, timeSlice, timer;
     private double delta, fixedTimeSlicePerTick;
 
-    //Temporal code
+//    Temporal code
 //    private BufferedImage testImage;
 //    private SpriteSheet sheet;
 
@@ -66,6 +67,7 @@ public class Game implements Runnable{
        this.title = title;
        keyManager = new KeyManager();
        mouseManager = new MouseManager();
+//       isFrameRateDependencyOn = true;
     }
 
     //Getters
@@ -125,7 +127,7 @@ public class Game implements Runnable{
 
     private void tick() {
         keyManager.tick();
-        //x += 1;
+        if(isFrameRateDependencyOn){ x += 5; }
 
         if (State.getCurrentState() != null) { State.getCurrentState().tick();}
     }
@@ -146,7 +148,7 @@ public class Game implements Runnable{
         // Draw here.
 
         if(State.getCurrentState() != null) {State.getCurrentState().render(graphics);}
-        //graphics.drawImage(Assets.adventurer,400+ x,400,null); //for tests only
+        if(isFrameRateDependencyOn){ graphics.drawImage(Assets.adventurer,400 + x,400,null); }//for tests only
         // End drawing.
         bufferStrategy.show();
         graphics.dispose();
@@ -169,43 +171,44 @@ public class Game implements Runnable{
         fixedTimeSlicePerTick = oneSecondInNanoseconds / rate;
 
         while (isGameRunning) {
-         /*
-            now = System.nanoTime();
-            timeSlice = now - lastTime;
-            tick();
-            render();
-            ticks++;
-            timer += timeSlice;
-            lastTime = now;
+            if(isFrameRateDependencyOn){
 
-            if(timer >= oneSecondInNanoseconds) {
-                System.out.println("Ticks and frames: " + ticks);
-                ticks = 0;
-                timer = 0;
-            }
-          */
-
-//             /*
-            now = System.nanoTime();
-            timeSlice = now - lastTime;
-            delta += timeSlice / fixedTimeSlicePerTick; // summing little differential fraction and checking whether delta >= 1 later on;
-            timer += timeSlice; // summing little time periods and checking whether timer >= second later on, optional, for game statistics only;
-
-            lastTime = now;
-
-            if(delta >= 1){
+                now = System.nanoTime();
+                timeSlice = now - lastTime;
                 tick();
                 render();
                 ticks++;
-                delta = 0; // or delta--;
+                timer += timeSlice;
+                lastTime = now;
+
+                if(timer >= oneSecondInNanoseconds) {
+                    System.out.println("Ticks and frames: " + ticks);
+                    ticks = 0;
+                    timer = 0;
+                }
             }
 
-            if(timer >= oneSecondInNanoseconds){
-                System.out.println("Ticks and frames: " + ticks);
-                ticks = 0;
-                timer = 0;
+            if(!isFrameRateDependencyOn){
+                now = System.nanoTime();
+                timeSlice = now - lastTime;
+                delta += timeSlice / fixedTimeSlicePerTick; // summing little differential fraction and checking whether delta >= 1 later on;
+                timer += timeSlice; // summing little time periods and checking whether timer >= second later on, optional, for game statistics only;
+
+                lastTime = now;
+
+                if(delta >= 1){
+                    tick();
+                    render();
+                    ticks++;
+                    delta = 0; // or delta--;
+                }
+
+                if(timer >= oneSecondInNanoseconds){
+                    System.out.println("Ticks and frames: " + ticks);
+                    ticks = 0;
+                    timer = 0;
+                }
             }
-//             */
         }
         stop();
     }
