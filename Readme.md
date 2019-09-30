@@ -45,7 +45,7 @@ You have to install Java Runtime Environment and Java Development Kit.
 7. At the top bar menu go to **Run** bookmark and hit **Edit configurations**:
     - Hit "**+**" plus button : "**Add New Configuration**" : **Application**
     - **Name** it : Little2DGame ;]
-    - In **Main class** add : "dev.codenmore.java2Dgame.Launcher"
+    - In **Main class** add : "dev.java2Dgame.Launcher"
     - **Working directory** : "C:\path_to_project_folder"
     - **Use classpath of module** : Little2DGame
 
