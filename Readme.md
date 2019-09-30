@@ -1,5 +1,11 @@
 # Little 2D Game in java : demo
 
+This game is derived from "New Beginner Java Game Programming" series : 
+
+https://github.com/CodeNMore/New-Beginner-Java-Game-Programming-Src
+
+Special thanks to CodeNMore !
+
 ## Project setup and configuration
 
 ### Sections
